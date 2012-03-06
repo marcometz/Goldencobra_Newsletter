@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131153932) do
+ActiveRecord::Schema.define(:version => 20120306173037) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -60,6 +60,26 @@ ActiveRecord::Schema.define(:version => 20120131153932) do
   add_index "goldencobra_articles", ["ancestry"], :name => "index_goldencobra_articles_on_ancestry"
   add_index "goldencobra_articles", ["slug"], :name => "index_goldencobra_articles_on_slug"
 
+  create_table "goldencobra_helps", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "goldencobra_locations", :force => true do |t|
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "street"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "region"
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "goldencobra_menues", :force => true do |t|
     t.string   "title"
     t.string   "target"
@@ -90,6 +110,14 @@ ActiveRecord::Schema.define(:version => 20120131153932) do
   create_table "goldencobra_roles_users", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "goldencobra_settings", :force => true do |t|
+    t.string   "title"
+    t.string   "value"
+    t.string   "ancestry"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -127,6 +155,18 @@ ActiveRecord::Schema.define(:version => 20120131153932) do
     t.string   "authentication_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.boolean  "gender"
+    t.string   "title"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "function"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "xing"
+    t.string   "googleplus"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
