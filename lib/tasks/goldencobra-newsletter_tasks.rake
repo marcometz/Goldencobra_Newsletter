@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :goldencobra-events do
+# task :goldencobra-newsletter do
 #   # Task goes here
 # end

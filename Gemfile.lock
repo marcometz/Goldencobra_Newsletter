@@ -40,7 +40,7 @@ GIT
 PATH
   remote: .
   specs:
-    goldencobra_events (0.0.1)
+    goldencobra_newsletter (0.0.1)
       goldencobra
       rails (~> 3.2.1)
 
@@ -328,7 +328,7 @@ DEPENDENCIES
   factory_girl (~> 2.3.2)
   factory_girl_rails (~> 1.4.0)
   goldencobra!
-  goldencobra_events!
+  goldencobra_newsletter!
   growl
   guard
   guard-annotate
