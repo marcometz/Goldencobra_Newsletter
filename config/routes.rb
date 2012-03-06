@@ -1,2 +1,2 @@
-GoldencobraEvents::Engine.routes.draw do
+GoldencobraNewsletter::Engine.routes.draw do
 end

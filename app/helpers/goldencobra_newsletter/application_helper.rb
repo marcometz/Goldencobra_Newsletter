@@ -1,4 +1,4 @@
-module GoldencobraEvents
+module GoldencobraNewsletter
   module ApplicationHelper
   end
 end
