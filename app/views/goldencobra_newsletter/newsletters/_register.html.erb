@@ -16,33 +16,17 @@
     </ul>
   </div>
 
-  <%= helper_neu(:title, :required => false) %>
-  <div class="#{css_prefix}-field-group">
-    <%= label_tag(:title, "Titel") %>
-    <%= text_field_tag(:title, nil, :id => "#{css_prefix}-field-title") %>
-  </div>
+  <%= text_box_with_label_for(:title, :required => false) %>
 
-  <div class="#{css_prefix}-field-group">
-    <%= label_tag(:first_name, "Vorname") %>
-    <%= text_field_tag(:first_name, nil, :id => "#{css_prefix}-field-first-name") %>
-  </div>
+  <%= text_box_with_label_for(:first_name, :required => false) %>
 
-  <%= helper_neu(:last_name, :required => true) %>
+  <%= text_box_with_label_for(:last_name, :required => true) %>
 
-  <div class="#{css_prefix}-field-group">
-    <%= label_tag(:company, "Firma") %>
-    <%= text_field_tag(:company, nil, :required => true, :id => "#{css_prefix}-field-company") %>
-  </div>
+  <%= text_box_with_label_for(:company, :required => true) %>
 
-  <div class="#{css_prefix}-field-group">
-    <%= label_tag(:phone, "Telefon") %>
-    <%= text_field_tag(:phone, nil, :id => "#{css_prefix}-field-phone") %>
-  </div>
+  <%= text_box_with_label_for(:phone, :required => false) %>
 
-  <div class="#{ciss_prefix}-field-group">
-    <%= label_tag(:email, "Email-Addresse") %>
-    <%= text_field_tag(:email, "", :required => true, :id => "#{css_prefix}-field-email") %>
-  </div>
+  <%= text_box_with_label_for(:email, :required => true) %>
 
   <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
 

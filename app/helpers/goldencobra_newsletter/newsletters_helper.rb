@@ -8,16 +8,14 @@ module GoldencobraNewsletter
       render :partial => "goldencobra_newsletter/newsletters/register"
     end
 
-    def helper_neu(field_name, options = {})
+    def text_box_with_label_for(field_name, options = {})
 
       css_prefix = "goldencobra-newsletter-registration"
+      text_field_id = css_prefix + "-field-" + field_name.to_s.gsub('-','_')
 
       content_tag :div, :class => "#{css_prefix}-field-group" do
-        text_field_id = css_prefix + "-field-" + field_name.to_s.gsub('-','_')
-
-        return label_tag(field_name, field_name) +
+        label_tag(field_name, field_name) +
         text_field_tag(field_name, nil, :id => text_field_id, :required => options[:required])
-
       end
 
     end
