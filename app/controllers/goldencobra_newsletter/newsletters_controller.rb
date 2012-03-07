@@ -5,11 +5,17 @@ module GoldencobraNewsletter
 
       user = User.find_by_email(params[:email])
 
-      old_newsletter = user.newsletter || false
+      if user
+        user.newsletter = true
 
-      user.newsletter = true
+        user.save!
 
-      user.save!
+      else
+
+        user = User.create(:firstname => "daniel", :lastname => "Spaude", :email => "daniel@spaude.de", :password => "pass12345", :password_confirmation => "pass12345")
+
+
+      end
 
       # render :text => "user.lastname " + user.lastname + "; old_newsletter: " + old_newsletter.to_s
 
