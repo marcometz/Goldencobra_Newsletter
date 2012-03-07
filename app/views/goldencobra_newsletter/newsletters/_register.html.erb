@@ -1,36 +1,49 @@
 <%= form_tag "/goldencobra_events/event/register", :remote => true do %>
 
-  <%= radio_button_tag(:gender, "male") %>
-  <%= label_tag(:gender, "Herr") %>
+  <div>
+    <ul>
+      <li>
+        <%= radio_button_tag(:gender, "male") %>
+        <%= label_tag(:gender, "Herr") %>
+      </li>
 
-  <%= radio_button_tag(:gender, "female") %>
-  <%= label_tag(:gender, "Frau") %>
+      <li>
+        <%= radio_button_tag(:gender, "female") %>
+        <%= label_tag(:gender, "Frau") %>
+      </li>
+    </ul>
+  </div>
 
-  <br />
-  <%= label_tag(:title, "Titel") %>
-  <%= text_field_tag(:title) %>
+  <div>
+    <%= label_tag(:title, "Titel") %>
+    <%= text_field_tag(:title) %>
+  </div>
 
-  <br />
-  <%= label_tag(:first_name, "Vorname") %>
-  <%= text_field_tag(:first_name) %>
+  <div>
+    <%= label_tag(:first_name, "Vorname") %>
+    <%= text_field_tag(:first_name) %>
+  </div>
 
-  <br />
-  <%= label_tag(:last_name, "Nachname") %>
-  <%= text_field_tag(:last_name, "", :required => true) %>
+  <div>
+    <%= label_tag(:last_name, "Nachname") %>
+    <%= text_field_tag(:last_name, "", :required => true) %>
+  </div>
 
-  <br />
-  <%= label_tag(:company, "Firma") %>
-  <%= text_field_tag(:company, "", :required => true) %>
+  <div>
+    <%= label_tag(:company, "Firma") %>
+    <%= text_field_tag(:company, "", :required => true) %>
+  </div>
 
-  <br />
-  <%= label_tag(:phone, "Telefon") %>
-  <%= text_field_tag(:phone) %>
+  <div>
+    <%= label_tag(:phone, "Telefon") %>
+    <%= text_field_tag(:phone) %>
+  </div>
 
-  <br />
-  <%= label_tag(:email, "Email-Addresse") %>
-  <%= text_field_tag(:email, "", :required => true) %>
+  <div>
+    <%= label_tag(:email, "Email-Addresse") %>
+    <%= text_field_tag(:email, "", :required => true) %>
+  </div>
 
-  <br />
   <%= submit_tag("Eintragen") %>
 
 <% end %>
