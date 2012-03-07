@@ -3,7 +3,7 @@ module GoldencobraNewsletter
 
     def register
 
-      puts "REGISTER WURDE AUFGERUFEN!!!!!!!!!!!!!!!!"
+      render :text => params.inspect
 
     end
 
