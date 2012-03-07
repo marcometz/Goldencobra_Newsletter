@@ -16,11 +16,11 @@
 
   <br />
   <%= label_tag(:last_name, "Nachname") %>
-  <%= text_field_tag(:last_name) %>
+  <%= text_field_tag(:last_name, "", :required => true) %>
 
   <br />
   <%= label_tag(:company, "Firma") %>
-  <%= text_field_tag(:company) %>
+  <%= text_field_tag(:company, "", :required => true) %>
 
   <br />
   <%= label_tag(:phone, "Telefon") %>
@@ -28,7 +28,7 @@
 
   <br />
   <%= label_tag(:email, "Email-Addresse") %>
-  <%= text_field_tag(:email) %>
+  <%= text_field_tag(:email, "", :required => true) %>
 
   <br />
   <%= submit_tag("Eintragen") %>
