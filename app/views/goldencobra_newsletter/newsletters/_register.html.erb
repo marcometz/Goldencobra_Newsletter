@@ -1,4 +1,5 @@
-<%= form_tag "/goldencobra_events/event/register", :remote => true do %>
+<% css_class_prefix = "goldencobra_newsletter" %>
+<%= form_tag "/goldencobra_events/event/register", :remote => true, :id => "#{css_class_prefix}-registration-form" do %>
 
   <div>
     <ul>
