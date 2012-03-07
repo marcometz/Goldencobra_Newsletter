@@ -3,7 +3,6 @@ module GoldencobraNewsletter
 
     def register
 
-
       user = User.find_by_email(params[:email])
 
       old_newsletter = user.newsletter || false
@@ -12,7 +11,7 @@ module GoldencobraNewsletter
 
       user.save!
 
-      render :text => "user.lastname " + user.lastname + "; old_newsletter: " + old_newsletter.to_s
+      # render :text => "user.lastname " + user.lastname + "; old_newsletter: " + old_newsletter.to_s
 
     end
 
