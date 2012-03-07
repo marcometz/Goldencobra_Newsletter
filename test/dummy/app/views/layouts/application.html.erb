@@ -13,25 +13,26 @@
 
   <body>
 
-<%= navigation_menu(1, :depth => 1) %>
+    <%= newsletter_registration_form %>
+    <%= navigation_menu(1, :depth => 1) %>
 
-<h1><%= yield(:article_title) %></h1>
+    <h1><%= yield(:article_title) %></h1>
 
-<div>
-	<%= breadcrumb() %>
-</div>
+    <div>
+      <%= breadcrumb() %>
+    </div>
 
-<%= yield %>
+    <%= yield %>
 
-<div id="article_content">
-	<%= yield(:article_subtitle) %>
-	<%= yield(:article_summary) %>
-	<%= yield(:article_content) %>
-	<%= yield(:article_teaser) %>
-</div>
+    <div id="article_content">
+      <%= yield(:article_subtitle) %>
+      <%= yield(:article_summary) %>
+      <%= yield(:article_content) %>
+      <%= yield(:article_teaser) %>
+    </div>
 
-<%= navigation_menu(2) %>
+    <%= navigation_menu(2) %>
 
 
-</body>
+  </body>
 </html>
