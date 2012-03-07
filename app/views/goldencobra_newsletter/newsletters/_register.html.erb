@@ -1,1 +1,37 @@
-JO, ICH BIN DAS PARTIAL!
+<%= form_tag "/goldencobra_events/event/register", :remote => true do %>
+
+  <%= radio_button_tag(:gender, "male") %>
+  <%= label_tag(:gender, "Herr") %>
+
+  <%= radio_button_tag(:gender, "female") %>
+  <%= label_tag(:gender, "Frau") %>
+
+  <br />
+  <%= label_tag(:title, "Titel") %>
+  <%= text_field_tag(:title) %>
+
+  <br />
+  <%= label_tag(:first_name, "Vorname") %>
+  <%= text_field_tag(:first_name) %>
+
+  <br />
+  <%= label_tag(:last_name, "Nachname") %>
+  <%= text_field_tag(:last_name) %>
+
+  <br />
+  <%= label_tag(:company, "Firma") %>
+  <%= text_field_tag(:company) %>
+
+  <br />
+  <%= label_tag(:phone, "Telefon") %>
+  <%= text_field_tag(:phone) %>
+
+  <br />
+  <%= label_tag(:email, "Email-Addresse") %>
+  <%= text_field_tag(:email) %>
+
+  <br />
+  <%= submit_tag("Eintragen") %>
+
+<% end %>
+
