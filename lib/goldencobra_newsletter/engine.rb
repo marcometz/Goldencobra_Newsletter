@@ -7,8 +7,8 @@ module GoldencobraNewsletter
       ApplicationController.helper(GoldencobraNewsletter::ApplicationHelper)
       ActionController::Base.helper(GoldencobraNewsletter::ApplicationHelper)
 
-      ApplicationController.helper(GoldencobraNewsletter::NewsletterHelper)
-      ActionController::Base.helper(GoldencobraNewsletter::NewsletterHelper)
+      ApplicationController.helper(GoldencobraNewsletter::NewslettersHelper)
+      ActionController::Base.helper(GoldencobraNewsletter::NewslettersHelper)
     end
 
   end
