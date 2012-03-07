@@ -1,8 +1,8 @@
-<% css_class_prefix = "goldencobra-newsletter-registration" %>
+<% css_prefix = "goldencobra-newsletter-registration" %>
 
-<%= form_tag "/goldencobra_events/event/register", :remote => true, :id => "#{css_class_prefix}-form" do %>
+<%= form_tag "/goldencobra_events/event/register", :remote => true, :id => "#{css_prefix}-form" do %>
 
-  <div id="#{css_class_prefix}-field-group">
+  <div class="#{css_prefix}-field-group">
     <ul>
       <li>
         <%= radio_button_tag(:gender, "male") %>
@@ -16,37 +16,38 @@
     </ul>
   </div>
 
-  <div id="#{css_class_prefix}-field-group">
+  <%= helper_neu(:title, :required => true) %>
+  <div class="#{css_prefix}-field-group">
     <%= label_tag(:title, "Titel") %>
-    <%= text_field_tag(:title, nil, :id => "#{css_class_prefix}-field-title") %>
+    <%= text_field_tag(:title, nil, :id => "#{css_prefix}-field-title") %>
   </div>
 
-  <div id="#{css_class_prefix}-field-group">
+  <div class="#{css_prefix}-field-group">
     <%= label_tag(:first_name, "Vorname") %>
-    <%= text_field_tag(:first_name, nil, :id => "#{css_class_prefix}-field-first-name") %>
+    <%= text_field_tag(:first_name, nil, :id => "#{css_prefix}-field-first-name") %>
   </div>
 
-  <div id="#{css_class_prefix}-field-group">
+  <div class="#{css_prefix}-field-group">
     <%= label_tag(:last_name, "Nachname") %>
-    <%= text_field_tag(:last_name, nil, :required => true, :id => "#{css_class_prefix}-field-last-name") %>
+    <%= text_field_tag(:last_name, nil, :required => true, :id => "#{css_prefix}-field-last-name") %>
   </div>
 
-  <div id="#{css_class_prefix}-field-group">
+  <div class="#{css_prefix}-field-group">
     <%= label_tag(:company, "Firma") %>
-    <%= text_field_tag(:company, nil, :required => true, :id => "#{css_class_prefix}-field-company") %>
+    <%= text_field_tag(:company, nil, :required => true, :id => "#{css_prefix}-field-company") %>
   </div>
 
-  <div id="#{css_class_prefix}-field-group">
+  <div class="#{css_prefix}-field-group">
     <%= label_tag(:phone, "Telefon") %>
-    <%= text_field_tag(:phone, nil, :id => "#{css_class_prefix}-field-phone") %>
+    <%= text_field_tag(:phone, nil, :id => "#{css_prefix}-field-phone") %>
   </div>
 
-  <div id="#{css_class_prefix}-field-group">
+  <div class="#{ciss_prefix}-field-group">
     <%= label_tag(:email, "Email-Addresse") %>
-    <%= text_field_tag(:email, "", :required => true, :id => "#{css_class_prefix}-field-email") %>
+    <%= text_field_tag(:email, "", :required => true, :id => "#{css_prefix}-field-email") %>
   </div>
 
-  <%= submit_tag("Eintragen", :id => "#{css_class_prefix}-submit") %>
+  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
 
 <% end %>
 
