@@ -16,7 +16,7 @@
     </ul>
   </div>
 
-  <%= helper_neu(:title, :required => true) %>
+  <%= helper_neu(:title, :required => false) %>
   <div class="#{css_prefix}-field-group">
     <%= label_tag(:title, "Titel") %>
     <%= text_field_tag(:title, nil, :id => "#{css_prefix}-field-title") %>
@@ -27,10 +27,7 @@
     <%= text_field_tag(:first_name, nil, :id => "#{css_prefix}-field-first-name") %>
   </div>
 
-  <div class="#{css_prefix}-field-group">
-    <%= label_tag(:last_name, "Nachname") %>
-    <%= text_field_tag(:last_name, nil, :required => true, :id => "#{css_prefix}-field-last-name") %>
-  </div>
+  <%= helper_neu(:last_name, :required => true) %>
 
   <div class="#{css_prefix}-field-group">
     <%= label_tag(:company, "Firma") %>

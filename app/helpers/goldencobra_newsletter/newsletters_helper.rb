@@ -12,17 +12,13 @@ module GoldencobraNewsletter
 
       css_prefix = "goldencobra-newsletter-registration"
 
-      content_tag :div, :class => css_prefix do
+      content_tag :div, :class => "#{css_prefix}-field-group" do
+        text_field_id = css_prefix + "-field-" + field_name.to_s.gsub('-','_')
 
-        if options[:required]
-          "DER NEUE HELPER: #{field_name} -- #{options}"
-        end
+        return label_tag(field_name, field_name) +
+        text_field_tag(field_name, nil, :id => text_field_id, :required => options[:required])
+
       end
-
-  # <div class="#{css_prefix}-field-group">
-  #   <%= label_tag(:title, "Titel") %>
-  #   <%= text_field_tag(:title, nil, :id => "#{css_prefix}-field-title") %>
-  # </div>
 
     end
 
