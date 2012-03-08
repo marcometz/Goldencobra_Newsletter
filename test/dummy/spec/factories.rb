@@ -47,3 +47,9 @@ end
 Factory.define :guest_role, :class => Goldencobra::Role do |r|
   r.name "guest"
 end
+
+Factory.define :newsletter_registration, :class => GoldencobraNewsletter::NewsletterRegistration do |r|
+  r.is_subscriber true
+  r.company_name "Amazon Inc."
+
+end
