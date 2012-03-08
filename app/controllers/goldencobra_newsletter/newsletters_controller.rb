@@ -13,8 +13,6 @@ module GoldencobraNewsletter
         generated_pass = Digest::MD5.new.hexdigest("pass-#{Time.now.to_f}")
         user = User.create(:firstname => params[:first_name], :lastname => params[:last_name], :email => params[:email], :password => generated_pass, :password_confirmation => generated_pass)
 
-        user.save!
-
       end
 
       if(user.newsletter_registration == nil)
@@ -24,7 +22,6 @@ module GoldencobraNewsletter
       user.newsletter_registration.company_name = params[:company]
       user.newsletter_registration.is_subscriber = true
 
-      user.newsletter_registration.save!
       user.save!
 
 
