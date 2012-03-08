@@ -14,13 +14,23 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
 
 
   show :title => :full_user_name do
-    panel "User" do
-      attributes_table_for newsletter_registration.user do
-        [:firstname, :lastname, :title, :email, :gender].each do |aa|
-          row aa
+
+    attributes_table do
+      panel "User" do
+        attributes_table_for newsletter_registration.user do
+          [:firstname, :lastname, :title, :email, :gender].each do |aa|
+            row aa
+          end
         end
+
       end
+      row :company_name
+      row :is_subscriber
+      # row :image do
+      #   image_tag(ad.image.url)
+      # end
     end
+
   end
 
 
