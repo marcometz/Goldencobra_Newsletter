@@ -13,5 +13,7 @@
 module GoldencobraNewsletter
   class NewsletterRegistration < ActiveRecord::Base
     belongs_to :user, :class_name => User
+
+
   end
 end
