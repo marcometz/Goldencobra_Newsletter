@@ -19,5 +19,9 @@ module GoldencobraNewsletter
       [user.firstname, user.lastname].join(" ")
     end
 
+    def self.generate_random_dummy_password
+        Digest::MD5.new.hexdigest("pass-#{Time.now.to_f}")
+    end
+
   end
 end
