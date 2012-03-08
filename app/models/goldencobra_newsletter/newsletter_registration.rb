@@ -14,6 +14,9 @@ module GoldencobraNewsletter
   class NewsletterRegistration < ActiveRecord::Base
     belongs_to :user, :class_name => User
 
+    def full_user_name
+      [user.firstname, user.lastname].join(" ")
+    end
 
   end
 end

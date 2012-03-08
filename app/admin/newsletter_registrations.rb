@@ -9,17 +9,21 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     column :is_subscriber
 
     default_actions
+
   end
 
 
-  show :title => newsletter_registration.user.lastname do
+  show :title => :full_user_name do
     panel "User" do
       attributes_table_for newsletter_registration.user do
-        # [:firstname, :lastname, :title, :email, :gender, :function, :phone, :fax, :facebook, :twitter, :linkedin, :xing, :googleplus, :created_at, :updated_at].each do |aa|
-        #   row aa
+        [:firstname, :lastname, :title, :email, :gender].each do |aa|
+          row aa
+        end
       end
     end
   end
+
+
     # panel "Company" do
     #   if applicant.company
     #     attributes_table_for applicant.company do
