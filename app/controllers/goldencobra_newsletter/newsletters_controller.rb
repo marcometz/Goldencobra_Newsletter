@@ -20,8 +20,6 @@ module GoldencobraNewsletter
 
         user = User.create(:firstname => params[:firstname], :lastname => [:lastname], :email => params[:email], :password => generated_pass, :password_confirmation => generated_pass)
 
-
-
       end
 
     end
