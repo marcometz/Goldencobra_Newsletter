@@ -18,6 +18,8 @@ end
 
 Factory.define :admin_user, :class => User do |u|
   u.email 'admin@test.de'
+  u.firstname 'Admin'
+  u.lastname 'Goldencobra'
   u.password 'secure12'
   u.password_confirmation 'secure12'
   u.confirmed_at "2012-01-09 14:28:58"
@@ -46,6 +48,12 @@ end
 
 Factory.define :guest_role, :class => Goldencobra::Role do |r|
   r.name "guest"
+end
+
+Factory.define :admin_permission, :class => Goldencobra::Permission do |p|
+  p.action "manage"
+  p.subject_class ":all"
+  p.subject_id ""
 end
 
 Factory.define :newsletter_registration, :class => GoldencobraNewsletter::NewsletterRegistration do |r|

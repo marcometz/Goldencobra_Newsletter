@@ -1,0 +1,9 @@
+de:
+  active_admin:
+    resource:
+      newsletter_registration: "Newsletteranmeldungen"
+    subscriber: "Abonnent"
+    company: "Unternehmen"
+    user: "Nutzer"
+    is_subscriber: "Abonnement aktiv?"
+

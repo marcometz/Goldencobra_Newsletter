@@ -1,0 +1,7 @@
+<h4>Newsletter Anmeldeformular in der Seitenleiste des Artikels einblenden?</h4>
+
+<%= semantic_form_for ["admin", @article], html: { id: "goldencobra_newsletter_article_newsletter_module" } do |f| %>
+  <%= hidden_field_tag "article[newsletter]", 0 %>
+  <p><%= check_box_tag "article[newsletter]", 1, @article.newsletter %> Newsletter einblenden</p>
+  <%= f.submit "Speichern" %>
+<% end %>
