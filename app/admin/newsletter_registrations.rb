@@ -1,6 +1,8 @@
 ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "Newsletter Registration" do
   # menu :parent => "Newsletter Registration"
 
+  filter :firstname
+  
   index do
     column :user do |nr|
       [nr.user.firstname, nr.user.lastname].join(" ")
@@ -18,7 +20,6 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     default_actions
   end
 
-filter :firstname
 
   show :title => :full_user_name do
 
