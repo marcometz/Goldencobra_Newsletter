@@ -18,6 +18,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     default_actions
   end
 
+filter :firstname
 
   show :title => :full_user_name do
 
