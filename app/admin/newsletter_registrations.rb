@@ -16,15 +16,14 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     column "#{t('active_admin.is_subscriber')}" do |nr|
       nr.is_subscriber #? "#{t('active_admin.yes')}" : "#{t('active_admin.no')}"
     end
-    column "Test" do 
-        ActiveAdmin.application.load_paths.to_yaml
-    end
     default_actions
   end
 
+  sidebar "Test" do
+    ActiveAdmin.application.load_paths.to_yaml    
+  end
 
   show :title => :full_user_name do
-
     attributes_table do
       panel "User" do
         attributes_table_for newsletter_registration.user do
