@@ -1,7 +1,7 @@
 ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "Newsletter Registration" do
   # menu :parent => "Newsletter Registration"
 
-  filter :firstname
+  filter :company_name
   
   index do
     column :user do |nr|
@@ -19,9 +19,6 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     default_actions
   end
 
-  sidebar "Test" do
-    ActiveAdmin.application.load_paths.to_yaml    
-  end
 
   show :title => :full_user_name do
     attributes_table do
