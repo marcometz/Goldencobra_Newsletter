@@ -19,3 +19,5 @@ test/dummy/tmp/*
 test/dummy/log/test.log
 test/dummy/db/migrate/*
 test/dummy/db/schema.rb
+
+.DS_Store

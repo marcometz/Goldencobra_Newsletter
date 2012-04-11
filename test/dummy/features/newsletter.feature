@@ -43,7 +43,7 @@ Feature: Display newsletter module and register for newsletters
     Then I should see "Michaela Mustermann"
     And I should see "michaela@mustermann.de"
     And I should see "Mustercompany"
-    And I should see "true" within ".is_subscriber"
+    And I should see "true"
 
   @javascript
   Scenario: Unsuccessfully register for a newsletter

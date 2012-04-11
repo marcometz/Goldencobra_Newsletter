@@ -18,9 +18,8 @@ end
 group :test do
   gem 'sqlite3'
   gem 'cucumber'
-  gem 'cucumber-rails', '~>1.2.1'
-  gem 'factory_girl', '~> 2.3.2'
-  gem "factory_girl_rails", "~> 1.4.0"
+  gem 'cucumber-rails', '~> 1.3.0' 
+  gem "factory_girl_rails", :git => "git://github.com/thoughtbot/factory_girl_rails.git"
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
