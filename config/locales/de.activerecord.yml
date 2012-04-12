@@ -1,0 +1,23 @@
+de:
+  activerecord:
+    models:
+      newsletter_registration: "Newsletter Anmeldung"
+      company:
+        one: "Unternehmen"
+        other: "Unternehmen"
+    attributes:
+      newsletter_registration:
+        is_subscriber: "Ist angemeldet"
+        company_name: "Unternehmen"
+      user:
+        gender:
+          male: "Herr"
+          female: "Frau"
+          one: "" 
+          other: ""
+        title: "Titel"
+        firstname: "Vorname"
+        lastname: "Nachname"
+        email: "E-Mail"
+      company:
+        phone: "Telefon"

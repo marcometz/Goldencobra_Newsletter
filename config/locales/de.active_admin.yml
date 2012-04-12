@@ -1,0 +1,11 @@
+de:
+  active_admin:
+    resource:
+      newsletter_registration: "Newsletteranmeldung"
+      user: "Nutzer"
+    subscriber: "Abonnent"
+    company: "Unternehmen"
+    user: "Nutzer"
+    is_subscriber: "Abonnement aktiv?"
+    yes: "Ja"
+    no: "Nein"
