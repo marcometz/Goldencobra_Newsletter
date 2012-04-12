@@ -12,9 +12,7 @@ de:
     no: "Nein"
   activerecord:
     models:
-      newsletter_registration:
-        one: "Newsletter Anmeldung"
-        other: "Newsletter Anmeldungen"
+      newsletter_registration: "Newsletter Anmeldung"
       company:
         one: "Unternehmen"
         other: "Unternehmen"
