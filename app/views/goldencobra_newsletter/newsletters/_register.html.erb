@@ -9,27 +9,33 @@
 	    <ul>
 	      <li>
 	        <%= radio_button_tag(:gender, "male") %>
-	        <%= label_tag(:gender, "Herr") %>
+	        <%= label_tag(t('activerecord.attributes.user.gender.male')) %>
 	      </li>
 
 	      <li>
 	        <%= radio_button_tag(:gender, "female") %>
-	        <%= label_tag(:gender, "Frau") %>
+	        <%= label_tag(t('activerecord.attributes.user.gender.female')) %>
 	      </li>
 	    </ul>
 	  </div>
 
-	  <%= text_box_with_label_for(:title, :required => false) %>
+		<%= label_tag(:title, t('activerecord.attributes.user.title'))%>
+	  <%= text_field_tag(:title, "", :required => false) %><br />
+		
+		<%= label_tag(:first_name, t('activerecord.attributes.user.firstname'))%>
+	  <%= text_field_tag(:first_name, "", :required => false) %><br />
 
-	  <%= text_box_with_label_for(:first_name, :required => false) %>
+		<%= label_tag(:last_name, t('activerecord.attributes.user.lastname'))%>
+	  <%= text_field_tag(:last_name, "", :required => false) %><br />
 
-	  <%= text_box_with_label_for(:last_name, :required => false) %>
+		<%= label_tag(:company, t('activerecord.models.company.one'))%>
+	  <%= text_field_tag(:company, "", :required => false) %><br />
 
-	  <%= text_box_with_label_for(:company, :required => false) %>
+		<%= label_tag(:phone, t('activerecord.attributes.company.phone'))%>
+	  <%= text_field_tag(:phone, "", :required => false) %><br />
 
-	  <%= text_box_with_label_for(:phone, :required => false) %>
-
-	  <%= text_box_with_label_for(:email, :required => false) %>
+		<%= label_tag(:email, t('activerecord.attributes.user.email'))%>
+	  <%= text_field_tag(:email, "", :required => false) %><br />
 
 	  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
 
