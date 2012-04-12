@@ -1,5 +1,7 @@
 <% css_prefix = "goldencobra-newsletter-registration" %>
 <section>
+	<h2 class="boxheader"><%= s("goldencobra_newsletter.newsletters_widget.headline") %></h2>
+	<p><%= s("goldencobra_newsletter.newsletters_widget.description")%></p>
 	<%# <%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => false, :id => "#{css_prefix}-form" do %>
 	<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "#{css_prefix}-form" do %>
 
