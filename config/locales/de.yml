@@ -2,6 +2,9 @@ de:
   active_admin:
     resource:
       newsletter_registration: "Newsletteranmeldung"
+      user:
+          one: "Benutzer"
+          other: "Benutzer"
     subscriber: "Abonnent"
     company: "Unternehmen"
     user: "Nutzer"
@@ -20,8 +23,12 @@ de:
         company_name: "Unternehmen"
       user:
         gender:
-          male: "Herr"
-          female: "Frau"
+          male: 
+            one: "Herr"
+            other: "Herren"
+          female: 
+            one: "Frau"
+            other: "Frauen"
         title: "Titel"
         firstname: "Vorname"
         lastname: "Nachname"
