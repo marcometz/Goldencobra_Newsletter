@@ -1,35 +1,35 @@
 <% css_prefix = "goldencobra-newsletter-registration" %>
+<section>
+	<%# <%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => false, :id => "#{css_prefix}-form" do %>
+	<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "#{css_prefix}-form" do %>
 
-<%# <%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => false, :id => "#{css_prefix}-form" do %>
-<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "#{css_prefix}-form" do %>
+	  <div class="#{css_prefix}-field-group">
+	    <ul>
+	      <li>
+	        <%= radio_button_tag(:gender, "male") %>
+	        <%= label_tag(:gender, "Herr") %>
+	      </li>
 
-  <div class="#{css_prefix}-field-group">
-    <ul>
-      <li>
-        <%= radio_button_tag(:gender, "male") %>
-        <%= label_tag(:gender, "Herr") %>
-      </li>
+	      <li>
+	        <%= radio_button_tag(:gender, "female") %>
+	        <%= label_tag(:gender, "Frau") %>
+	      </li>
+	    </ul>
+	  </div>
 
-      <li>
-        <%= radio_button_tag(:gender, "female") %>
-        <%= label_tag(:gender, "Frau") %>
-      </li>
-    </ul>
-  </div>
+	  <%= text_box_with_label_for(:title, :required => false) %>
 
-  <%= text_box_with_label_for(:title, :required => false) %>
+	  <%= text_box_with_label_for(:first_name, :required => false) %>
 
-  <%= text_box_with_label_for(:first_name, :required => false) %>
+	  <%= text_box_with_label_for(:last_name, :required => false) %>
 
-  <%= text_box_with_label_for(:last_name, :required => false) %>
+	  <%= text_box_with_label_for(:company, :required => false) %>
 
-  <%= text_box_with_label_for(:company, :required => false) %>
+	  <%= text_box_with_label_for(:phone, :required => false) %>
 
-  <%= text_box_with_label_for(:phone, :required => false) %>
+	  <%= text_box_with_label_for(:email, :required => false) %>
 
-  <%= text_box_with_label_for(:email, :required => false) %>
+	  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
 
-  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
-
-<% end %>
-
+	<% end %>
+</section>
