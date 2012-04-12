@@ -1,9 +1,7 @@
 de:
   active_admin:
     resource:
-      newsletter_registration:
-        one: "Newsletteranmeldung"
-        other: "Newsletteranmeldungen"
+      newsletter_registration: "Newsletteranmeldung"
     subscriber: "Abonnent"
     company: "Unternehmen"
     user: "Nutzer"
