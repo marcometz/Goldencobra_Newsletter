@@ -19,26 +19,21 @@
 	    </ul>
 	  </div>
 
-		<label for="title" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.title') %> <span class='asterisk'>*</span></label>
-		<%#= label_tag(:title, "#{t('activerecord.attributes.user.title')}")%>
+		<label for="title" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.title') %></label>
 	  <%= text_field_tag(:title, "", :required => false) %><br />
 		
-		<%#= label_tag(:first_name, t('activerecord.attributes.user.firstname'), class: "newsletter_textbox_label")%>
 		<label for="first_name" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.firstname') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:first_name, "", :required => true) %><br />
 
-		<%#= label_tag(:last_name, t('activerecord.attributes.user.lastname'), class: "newsletter_textbox_label")%>
 		<label for="last_name" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.lastname') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:last_name, "", :required => true) %><br />
 
-		<%#= label_tag(:company, t('activerecord.models.company.one'), class: "newsletter_textbox_label")%>
 		<label for="company" class="newsletter_textbox_label"><%= t('activerecord.models.company.one') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:company, "", :required => false) %><br />
 
 		<%= label_tag(:phone, t('activerecord.attributes.company.phone'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:phone, "", :required => false) %><br />
 
-		<%#= label_tag(:email, t('activerecord.attributes.user.email'), class: "newsletter_textbox_label")%>
 		<label for="email" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.email') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:email, "", :required => true) %><br />
 
