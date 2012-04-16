@@ -39,5 +39,9 @@
 
 	  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
 
-	<% end %>
+	<% end %><br />
+	
+	<p><%= s("goldencobra_newsletter.newsletters_widget.bottom_text")%></p><br />
+	<p><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations")%><br />
+		<a href='<%= "#{s('goldencobra_newsletter.newsletters_widget.privacy_informations_link')}" %>'><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations_link_text")%></a></p>
 </section>

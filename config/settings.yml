@@ -2,3 +2,7 @@ goldencobra_newsletter:
   newsletters_widget:
     headline: "Newsletter"
     description: "Bleiben Sie auf dem Laufenden - tragen Sie sich in unseren Infoverteiler ein!"
+    bottom_text: "Sie können sich jederzeit wieder abmelden."
+    privacy_informations: "Wir behandeln Ihre Daten selbstverständlich streng vertraulich."
+    privacy_informations_link: "datenschutz.html"
+    privacy_informations_link_text: "zur Datenschutzerklärung"
