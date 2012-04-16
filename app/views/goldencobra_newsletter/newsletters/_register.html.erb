@@ -9,32 +9,32 @@
 	    <ul>
 	      <li>
 	        <%= radio_button_tag(:gender, "male") %>
-	        <%= label_tag(t('activerecord.attributes.user.gender.male')) %>
+	        <%= label_tag(t('activerecord.attributes.user.gender.male'), class: "newsletter_radio_label") %>
 	      </li>
 
 	      <li>
 	        <%= radio_button_tag(:gender, "female") %>
-	        <%= label_tag(t('activerecord.attributes.user.gender.female')) %>
+	        <%= label_tag(t('activerecord.attributes.user.gender.female'), class: "newsletter_radio_label") %>
 	      </li>
 	    </ul>
 	  </div>
 
-		<%= label_tag(:title, t('activerecord.attributes.user.title'))%>
+		<%= label_tag(:title, t('activerecord.attributes.user.title'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:title, "", :required => false) %><br />
 		
-		<%= label_tag(:first_name, t('activerecord.attributes.user.firstname'))%>
+		<%= label_tag(:first_name, t('activerecord.attributes.user.firstname'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:first_name, "", :required => false) %><br />
 
-		<%= label_tag(:last_name, t('activerecord.attributes.user.lastname'))%>
+		<%= label_tag(:last_name, t('activerecord.attributes.user.lastname'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:last_name, "", :required => false) %><br />
 
-		<%= label_tag(:company, t('activerecord.models.company.one'))%>
+		<%= label_tag(:company, t('activerecord.models.company.one'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:company, "", :required => false) %><br />
 
-		<%= label_tag(:phone, t('activerecord.attributes.company.phone'))%>
+		<%= label_tag(:phone, t('activerecord.attributes.company.phone'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:phone, "", :required => false) %><br />
 
-		<%= label_tag(:email, t('activerecord.attributes.user.email'))%>
+		<%= label_tag(:email, t('activerecord.attributes.user.email'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:email, "", :required => false) %><br />
 
 	  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
