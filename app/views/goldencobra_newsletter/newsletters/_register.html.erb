@@ -6,11 +6,11 @@
 	<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "#{css_prefix}-form" do %>
 
 	  <div class='<%="#{css_prefix}-field-group" %>'>
-		<span class="asterisk">*</span>
 	    <ul>
 	      <li>
 	        <%= radio_button_tag(:gender, "male") %>
-	        <%= label_tag(t('activerecord.attributes.user.gender.male'), nil, class: "newsletter_radio_label") %>
+	        <%= label_tag(t('activerecord.attributes.user.gender.male'), nil, class: "newsletter_radio_label") %> <span class="asterisk">*</span>
+					
 	      </li>
 
 	      <li>
