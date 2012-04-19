@@ -11,7 +11,6 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       u.user.email
     end
     column :company_name
-    end
     column "#{t('active_admin.is_subscriber')}" do |nr|
       nr.is_subscriber #? "#{t('active_admin.yes')}" : "#{t('active_admin.no')}"
     end
