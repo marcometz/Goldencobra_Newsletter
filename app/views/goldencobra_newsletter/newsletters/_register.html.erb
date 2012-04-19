@@ -1,42 +1,49 @@
 <% css_prefix = "goldencobra-newsletter-registration" %>
-<section>
 	<h2 class="boxheader"><%= s("goldencobra_newsletter.newsletters_widget.headline") %></h2>
 	<p><%= s("goldencobra_newsletter.newsletters_widget.description")%></p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 32c15ab7cf5830c217e6073bc2adfe61f32d18b0
 	<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "#{css_prefix}-form" do %>
 
-	  <div class="#{css_prefix}-field-group">
+	  <div class='<%="#{css_prefix}-field-group" %>'>
 	    <ul>
 	      <li>
 	        <%= radio_button_tag(:gender, "male") %>
-	        <%= label_tag(t('activerecord.attributes.user.gender.male')) %>
+	        <%= label_tag(t('activerecord.attributes.user.gender.male'), nil, class: "newsletter_radio_label") %> <span class="asterisk">*</span>
+					
 	      </li>
 
 	      <li>
 	        <%= radio_button_tag(:gender, "female") %>
-	        <%= label_tag(t('activerecord.attributes.user.gender.female')) %>
+	        <%= label_tag(t('activerecord.attributes.user.gender.female'), nil, class: "newsletter_radio_label") %>
 	      </li>
 	    </ul>
 	  </div>
 
-		<%= label_tag(:title, t('activerecord.attributes.user.title'))%>
+		<label for="title" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.title') %></label>
 	  <%= text_field_tag(:title, "", :required => false) %><br />
 		
-		<%= label_tag(:first_name, t('activerecord.attributes.user.firstname'))%>
-	  <%= text_field_tag(:first_name, "", :required => false) %><br />
+		<label for="first_name" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.firstname') %> <span class='asterisk'>*</span></label>
+	  <%= text_field_tag(:first_name, "", :required => true) %><br />
 
-		<%= label_tag(:last_name, t('activerecord.attributes.user.lastname'))%>
-	  <%= text_field_tag(:last_name, "", :required => false) %><br />
+		<label for="last_name" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.lastname') %> <span class='asterisk'>*</span></label>
+	  <%= text_field_tag(:last_name, "", :required => true) %><br />
 
-		<%= label_tag(:company, t('activerecord.models.company.one'))%>
+		<label for="company" class="newsletter_textbox_label"><%= t('activerecord.models.company.one') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:company, "", :required => false) %><br />
 
-		<%= label_tag(:phone, t('activerecord.attributes.company.phone'))%>
+		<%= label_tag(:phone, t('activerecord.attributes.company.phone'), class: "newsletter_textbox_label")%>
 	  <%= text_field_tag(:phone, "", :required => false) %><br />
 
-		<%= label_tag(:email, t('activerecord.attributes.user.email'))%>
-	  <%= text_field_tag(:email, "", :required => false) %><br />
+		<label for="email" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.email') %> <span class='asterisk'>*</span></label>
+	  <%= text_field_tag(:email, "", :required => true) %><br />
 
 	  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
 
-	<% end %>
-</section>
+	<% end %><br />
+	
+	<p><%= s("goldencobra_newsletter.newsletters_widget.bottom_text")%></p><br />
+	<p><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations")%><br />
+		<a href='<%= "#{s('goldencobra_newsletter.newsletters_widget.privacy_informations_link')}" %>'><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations_link_text")%></a></p>

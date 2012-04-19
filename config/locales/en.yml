@@ -1,10 +1,1 @@
 en:
-  active_admin:
-    resource:
-      newsletter_registration: "Newsletter registration"
-    subscriber: "Subscriber"
-    company: "Company"
-    user: "User"
-    is_subscriber: "Subscription active?"
-  yes: "Yes"
-  no: "No"
