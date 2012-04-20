@@ -5,14 +5,14 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   
   index do
     column :user do |nr|
-      [nr.user.firstname, nr.user.lastname].join(" ")
+      [nr.user.firstname, nr.user.lastname].join(" ") if nr.user && nr.user.firstname && nr.user.lastname
     end
     column "Email" do |u|
-      u.user.email
+      u.user.email if u.user && u.user.email
     end
     column :company_name
     column "#{t('active_admin.is_subscriber')}" do |nr|
-      nr.is_subscriber #? "#{t('active_admin.yes')}" : "#{t('active_admin.no')}"
+      nr.is_subscriber
     end
     default_actions
   end
