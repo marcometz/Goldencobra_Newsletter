@@ -2,6 +2,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   # menu :parent => "Newsletter Registration"
   controller.authorize_resource :class => GoldencobraNewsletter::NewsletterRegistration
   filter :company_name
+  filter :is_subscriber
   
   index do
     column :user do |nr|
