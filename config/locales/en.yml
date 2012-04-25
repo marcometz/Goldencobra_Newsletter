@@ -1,1 +1,14 @@
 en:
+  activerecord:
+    models:
+      company: "Company"
+    attributes:
+      company:
+        phone: "Phone"
+      user:
+        male: "Male"
+        female: "Female"
+        email: "Email"
+        lastname: "Lastname"
+        firstname: "Firstname"
+        title: "Title"

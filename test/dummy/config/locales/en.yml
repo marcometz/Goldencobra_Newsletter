@@ -2,13 +2,3 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  active_admin:
-    resource:
-      newsletter_registration: "Newsletter registration"
-    subscriber: "Subscriber"
-    company: "Company"
-    user: "User"
-    is_subscriber: "Subscription active?"
-  yes: "Yes"
-  no: "No"

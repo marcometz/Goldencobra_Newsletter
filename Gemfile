@@ -19,7 +19,7 @@ group :test do
   gem 'sqlite3'
   gem 'cucumber'
   gem 'cucumber-rails', '~> 1.3.0' 
-  gem "factory_girl_rails", :git => "git://github.com/thoughtbot/factory_girl_rails.git"
+  gem "factory_girl_rails"
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'

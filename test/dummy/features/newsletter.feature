@@ -18,12 +18,12 @@ Feature: Display newsletter module and register for newsletters
     When I check "article_newsletter"
     And I press "Speichern"
     And I go to the article page "dies-ist-ein-test"
-    Then I should see "title" within "#goldencobra-newsletter-registration-form"
-    And I should see "first_name" within "#goldencobra-newsletter-registration-form"
-    And I should see "last_name" within "#goldencobra-newsletter-registration-form"
-    And I should see "company" within "#goldencobra-newsletter-registration-form"
-    And I should see "phone" within "#goldencobra-newsletter-registration-form"
-    And I should see "email" within "#goldencobra-newsletter-registration-form"
+    Then I should see "Title" within "#goldencobra-newsletter-registration-form"
+    And I should see "Firstname" within "#goldencobra-newsletter-registration-form"
+    And I should see "Lastname" within "#goldencobra-newsletter-registration-form"
+    And I should see "Company" within "#goldencobra-newsletter-registration-form"
+    And I should see "Phone" within "#goldencobra-newsletter-registration-form"
+    And I should see "Email" within "#goldencobra-newsletter-registration-form"
 
   @javascript
   Scenario: Successfully register for a newsletter
@@ -54,5 +54,6 @@ Feature: Display newsletter module and register for newsletters
     Then I choose "gender_female"
     And I fill in "first_name" with "Michaela"
     And I fill in "last_name" with "Mustermann"
+    And I fill in "email" with "michaela"
     When I press "Eintragen"
     Then I should see "Nicht erfolgreich."

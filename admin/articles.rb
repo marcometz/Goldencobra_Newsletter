@@ -4,4 +4,8 @@ ActiveAdmin.register Goldencobra::Article, :as => "Article" do
   sidebar :newsletter_module, only: [:edit] do
     render "/goldencobra_newsletter/admin/newsletters/newsletter_module_sidebar"
   end
+  
+  sidebar :lokal do
+    h4 "#{I18n.locale}"
+  end
 end

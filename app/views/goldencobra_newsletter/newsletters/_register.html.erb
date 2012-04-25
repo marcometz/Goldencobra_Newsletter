@@ -1,7 +1,7 @@
 <% css_prefix = "goldencobra-newsletter-registration" %>
 	<h2 class="boxheader"><%= s("goldencobra_newsletter.newsletters_widget.headline") %></h2>
 	<p><%= s("goldencobra_newsletter.newsletters_widget.description")%></p>
-	<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "#{css_prefix}-form" do %>
+	<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "goldencobra-newsletter-registration-form" do %>
 
 	  <div class='<%="#{css_prefix}-field-group" %>'>
 	    <ul>
@@ -27,7 +27,7 @@
 		<label for="last_name" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.lastname') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:last_name, "", :required => true) %><br />
 
-		<label for="company" class="newsletter_textbox_label"><%= t('activerecord.models.company.one') %> <span class='asterisk'>*</span></label>
+		<label for="company" class="newsletter_textbox_label"><%= t('activerecord.models.company') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:company, "", :required => false) %><br />
 
 		<%= label_tag(:phone, t('activerecord.attributes.company.phone'), class: "newsletter_textbox_label")%>

@@ -15,6 +15,7 @@ Dummy::Application.configure do
   config.whiny_nils = true
 
   config.i18n.default_locale = :en
+  config.i18n.locale = :en
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
