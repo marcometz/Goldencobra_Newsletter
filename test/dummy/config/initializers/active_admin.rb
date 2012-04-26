@@ -57,6 +57,7 @@ ActiveAdmin.setup do |config|
 
   config.load_paths << "#{Goldencobra::Engine.root}/admin/"
   config.load_paths << "#{GoldencobraNewsletter::Engine.root}/admin/"
+  config.load_paths << "#{GoldencobraEmailTemplates::Engine.root}/admin/"
 
   # == Current User
   #

@@ -12,8 +12,10 @@
 
 module GoldencobraNewsletter
   class NewsletterRegistration < ActiveRecord::Base
+    LiquidParser = {}
     belongs_to :user, :class_name => User
     validates_presence_of :company_name
+    has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
 
     def full_user_name
       [user.firstname, user.lastname].join(" ")
