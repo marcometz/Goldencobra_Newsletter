@@ -15,6 +15,7 @@ group :development do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'guard-annotate'
   gem 'pry'
+  gem 'thin'
 end
 
 group :test do
