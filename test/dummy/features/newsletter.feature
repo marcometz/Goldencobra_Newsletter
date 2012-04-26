@@ -19,11 +19,11 @@ Feature: Display newsletter module and register for newsletters
     And I press "Speichern"
     And I go to the article page "dies-ist-ein-test"
     Then I should see "Title" within "#goldencobra-newsletter-registration-form"
-    And I should see "Firstname" within "#goldencobra-newsletter-registration-form"
-    And I should see "Lastname" within "#goldencobra-newsletter-registration-form"
+    And I should see "firstname" within "#goldencobra-newsletter-registration-form"
+    And I should see "lastname" within "#goldencobra-newsletter-registration-form"
     And I should see "Company" within "#goldencobra-newsletter-registration-form"
     And I should see "Phone" within "#goldencobra-newsletter-registration-form"
-    And I should see "Email" within "#goldencobra-newsletter-registration-form"
+    And I should see "email" within "#goldencobra-newsletter-registration-form"
 
   @javascript
   Scenario: Successfully register for a newsletter
