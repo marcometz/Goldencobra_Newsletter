@@ -1,0 +1,15 @@
+de:
+    activerecord:
+        models:
+            newsletter registration:
+                one: "newsletter registration"
+                other: "newsletter registrations"
+            goldencobra_newsletter/newsletter_registration:
+                one: "newsletter registration"
+                other: "newsletter registrations"
+        attributes:
+            goldencobra_newsletter/newsletter_registration:
+                company_name: "Company"
+                is_subscriber: "subscriber"
+        
+       

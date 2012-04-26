@@ -12,13 +12,14 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       u.user.email if u.user && u.user.email
     end
     column :company_name
-    column "#{t('active_admin.is_subscriber')}" do |nr|
+    column :is_subscriber do |nr|
       nr.is_subscriber
     end
     default_actions
   end
 
-
+  actions :all, :except => [:new]
+  
   show :title => :full_user_name do
     attributes_table do
       panel "User" do
@@ -33,5 +34,6 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     end
 
   end
+    
 
 end
