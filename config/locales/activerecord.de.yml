@@ -10,6 +10,9 @@ de:
             goldencobra_newsletter/company:
                 one: "Unternehmen"
                 other: "Unternehmen"
+            company:
+                one: "Unternehmen"
+                other: "Unternehmen"    
         attributes:
             goldencobra_newsletter/newsletter_registration:
                 company_name: "Firma"
