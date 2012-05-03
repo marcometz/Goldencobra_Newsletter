@@ -20,7 +20,7 @@ module GoldencobraNewsletter
         if newsletter_registration.blank?
           newsletter_registration = NewsletterRegistration.new
         end
-        if params[:company].length > 0
+        if params[:company] && params[:company].length > 0
           newsletter_registration.company_name = params[:company]
         else
           newsletter_registration.company_name = "privat"
