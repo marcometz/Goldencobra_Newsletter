@@ -1,8 +1,12 @@
 <% css_prefix = "goldencobra-newsletter-registration" %>
 	<h2 class="boxheader"><%= s("goldencobra_newsletter.newsletters_widget.headline") %></h2>
 	<p><%= s("goldencobra_newsletter.newsletters_widget.description")%></p>
-	<%= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "goldencobra-newsletter-registration-form" do %>
 
+	<%#= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "goldencobra-newsletter-registration-form" do %>
+	<form action="/goldencobra_newsletter/newsletters/register" method="post" data-remote="true" accept-charset="utf-8" id="goldencobra-newsletter-registration-form">
+		<input type="hidden" value="<%= Time.now.to_i %>" name="authenticity_token"/>
+		<%= hidden_field_tag(:newsletter_tags, newsletter_tag)%>
+	
 	  <div class='<%="#{css_prefix}-field-group" %>'>
 	    <ul>
 	      <li>
@@ -36,9 +40,12 @@
 		<label for="email" class="newsletter_textbox_label"><%= t('activerecord.attributes.user.email') %> <span class='asterisk'>*</span></label>
 	  <%= text_field_tag(:email, "", :required => true) %><br />
 
-	  <%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
-
-	<% end %><br />
+	<%# end %>
+	
+		<%= submit_tag("Eintragen", :id => "#{css_prefix}-submit") %>
+	</form>
+	
+	<br />
 	
 	<p><%= s("goldencobra_newsletter.newsletters_widget.bottom_text")%></p><br />
 	<p><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations")%><br />

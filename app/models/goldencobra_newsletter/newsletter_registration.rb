@@ -24,6 +24,11 @@ module GoldencobraNewsletter
     def self.generate_random_dummy_password
         Digest::MD5.new.hexdigest("pass-#{Time.now.to_f}")
     end
+    
+    
+    def self.render_formular(tag_name)
+      
+    end
 
   end
 end

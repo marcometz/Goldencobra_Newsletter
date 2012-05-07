@@ -1,5 +1,6 @@
 module GoldencobraNewsletter
   class NewslettersController < ApplicationController
+    protect_from_forgery :except => [:register]
 
     def register
 

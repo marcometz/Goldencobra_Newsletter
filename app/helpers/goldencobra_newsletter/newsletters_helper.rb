@@ -1,16 +1,15 @@
 module GoldencobraNewsletter
   module NewslettersHelper
     def newsletter_registration_form
-      partial = render(:partial => "goldencobra_newsletter/newsletters/register")
-      Goldencobra::Article::LiquidParser["newsletter_formular"] = partial
+      partial = render(:partial => "goldencobra_newsletter/newsletters/register", :locals => {:newsletter_tag => "default"})
+      #Goldencobra::Article::LiquidParser["newsletter_formular"] = partial
+      
       partial if @article && @article.newsletter
     end
 
     def text_box_with_label_for(field_name, options = {})
-
       css_prefix = "goldencobra-newsletter-registration"
       text_field_id = css_prefix + "-field-" + field_name.to_s.gsub('-','_')
-
       content_tag :div, :class => "#{css_prefix}-field-group" do
         label_tag(field_name, field_name) +
         text_field_tag(field_name, nil, :id => text_field_id, :required => options[:required])
