@@ -2,8 +2,6 @@ module GoldencobraNewsletter
   module NewslettersHelper
     def newsletter_registration_form
       partial = render(:partial => "goldencobra_newsletter/newsletters/register", :locals => {:newsletter_tag => "default"})
-      #Goldencobra::Article::LiquidParser["newsletter_formular"] = partial
-      
       partial if @article && @article.newsletter
     end
 
