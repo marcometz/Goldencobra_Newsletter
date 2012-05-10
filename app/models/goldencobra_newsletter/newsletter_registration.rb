@@ -2,12 +2,13 @@
 #
 # Table name: goldencobra_newsletter_newsletter_registrations
 #
-#  id            :integer(4)      not null, primary key
-#  user_id       :integer(4)
-#  company_name  :string(255)
-#  is_subscriber :boolean(1)
-#  created_at    :datetime        not null
-#  updated_at    :datetime        not null
+#  id              :integer(4)      not null, primary key
+#  user_id         :integer(4)
+#  company_name    :string(255)
+#  is_subscriber   :boolean(1)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  newsletter_tags :string(255)
 #
 
 module GoldencobraNewsletter
@@ -16,6 +17,7 @@ module GoldencobraNewsletter
     belongs_to :user, :class_name => User
     validates_presence_of :company_name
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
+    liquid_methods :newsletter_tags
 
     def full_user_name
       [user.firstname, user.lastname].join(" ")

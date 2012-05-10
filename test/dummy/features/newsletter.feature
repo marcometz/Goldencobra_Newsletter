@@ -57,3 +57,22 @@ Feature: Display newsletter module and register for newsletters
     And I fill in "email" with "michaela"
     When I press "Eintragen"
     Then I should see "Nicht erfolgreich."
+
+  @javascript
+  @email
+@wip
+  Scenario: Send email to newsletter recipients
+    Given the following "guest_users" exist:
+      | firstname | lastname | email            | password | password_confirmation | id |
+      | Timothy   | Thetest  | holger@ikusei.de | 123456   | 123456                |  3 |
+    And the following "newsletter_registrations" exist:
+      | user_id | company_name | is_subscriber |
+      |    3    | ikusei       |  true         |
+    And the following "email_templates" exist:
+      | content_html                | content_txt      | title                 | subject                |
+      | <div>Emails are great</div> | Emails are great | Newsletters are great | Awesome Email incoming |
+    When I go to the admin list of newsletter_registrations
+    Then I should see "newsletter registrations"
+    When I check "collection_selection_toggle_all"
+    And I click on "batch_actions_button"
+    And I click on "E-Mail senden: Newsletters are great"
