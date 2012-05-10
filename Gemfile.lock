@@ -127,8 +127,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-screenshot (0.1.10)
-      capybara (>= 1.0)
     capybara-webkit (0.11.0)
       capybara (>= 1.0.0, < 1.2)
       json
@@ -379,7 +377,6 @@ DEPENDENCIES
   activeadmin!
   annotate!
   capybara
-  capybara-screenshot
   capybara-webkit
   compass-rails
   cucumber
