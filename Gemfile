@@ -16,6 +16,7 @@ group :development do
   gem 'guard-annotate'
   gem 'pry'
   gem 'thin'
+  gem 'git-pivotal'
 end
 
 group :test do
