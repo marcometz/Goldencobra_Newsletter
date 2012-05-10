@@ -23,16 +23,4 @@ describe GoldencobraNewsletter::NewsletterRegistration do
     end
   end
 
-  describe "Email" do
-    it "should have an 'unsubscribe' link inside" do
-      # create new email with tag
-      # check for unsubcribe link with tag
-    end
-
-    it "should unsubscribe when following 'unsubscribe' link" do
-      # create and send email
-      # follow 'unsubscribe' link
-      # check for successful unsubscribe
-    end
-  end
 end

@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'capybara-screenshot'
 require 'rspec/autorun'
 require "factory_girl"
 require "factory_girl_rails"
@@ -34,4 +35,10 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+  config.include Devise::TestHelpers, :type => :controller
+  config.include Warden::Test::Helpers, :type => :acceptance
+  config.after(:each, :type => :acceptance) { Warden.test_reset! }
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
+
 end

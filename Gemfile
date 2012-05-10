@@ -20,6 +20,7 @@ group :development do
 end
 
 group :test do
+  gem 'capybara-screenshot', :require => false
   gem 'sqlite3'
   gem 'cucumber'
   gem 'cucumber-rails', '~> 1.3.0' 

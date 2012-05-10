@@ -40,7 +40,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     GoldencobraEmailTemplates::EmailTemplate.all.each do |emailtemplate|
       batch_action "E-Mail senden: #{emailtemplate.title}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
         GoldencobraNewsletter::NewsletterRegistration.find(selection).each do |newsreg|
-          GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver #unless Rails.env == "test"
+          GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
           newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
         end
         redirect_to :action => :index, :notice => "Newsletter wurden versendet"

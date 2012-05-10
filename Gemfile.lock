@@ -55,7 +55,7 @@ GIT
 
 GIT
   remote: git://github.com/ikusei/goldencobra_email_templates.git
-  revision: 356223789dd3b1aa49ba4ef619c5b7bf8cfa8ac0
+  revision: ff64a075ba6a71ec2b506278d3297a08f7b2edbc
   specs:
     goldencobra_email_templates (0.0.1)
       goldencobra
@@ -127,6 +127,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-screenshot (0.1.10)
+      capybara (>= 1.0)
     capybara-webkit (0.11.0)
       capybara (>= 1.0.0, < 1.2)
       json
@@ -377,6 +379,7 @@ DEPENDENCIES
   activeadmin!
   annotate!
   capybara
+  capybara-screenshot
   capybara-webkit
   compass-rails
   cucumber
