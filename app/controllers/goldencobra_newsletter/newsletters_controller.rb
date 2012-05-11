@@ -26,12 +26,41 @@ module GoldencobraNewsletter
         else
           newsletter_registration.company_name = "privat"
         end
+
+
         newsletter_registration.is_subscriber = true
 
         @user.newsletter_registration = newsletter_registration
         @success = @user.save
+        self.subscribe(@user.email, params[:newsletter_tag], newsletter_registration)
 
       end
+    end
+
+    def unsubscribe
+      @user = User.find_by_email(params[:email])
+      newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first
+      if newsletter_registration && @user
+        tags = []
+        tags << newsletter_registration.newsletter_tags
+        tags.delete(params[:tag])
+        newsletter_registration.update_attributes(newsletter_tags: tags.compact.join(","))
+        @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(params[:tag])
+        GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(@user, @template).deliver
+        render nothing: true
+      else
+        return false
+      end
+    end
+
+    def subscribe(email, newsletter_tag, newsletter_registration)
+      @user = User.find_by_email(email)
+      tags = []
+      tags << newsletter_registration.newsletter_tags
+      tags << newsletter_tag
+      newsletter_registration.update_attributes(newsletter_tags: tags.compact.join(","))
+      GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag)
+      render nothing: true
     end
 
   end

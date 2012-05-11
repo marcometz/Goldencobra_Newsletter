@@ -23,6 +23,25 @@ module GoldencobraNewsletter
       end
     end
 
+    def confirm_cancel_subscription(user, email_template)
+      @user = user
+      @template = email_template
+      if @user && @template
+        mail to: @user.email, subject: t(:subscription_canceled, scope: [:email, :subject])
+      else
+        do_not_deliver!
+      end
+    end
+
+    def confirm_subscription(email, email_template_tag)
+      @user = User.find_by_email(email)
+      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(email_template_tag)
+      if @user && @template
+        mail to: @user.email, subject: t(:subscription_confirmed, scope: [:email, :subject])
+      else
+        do_not_deliver!
+      end
+    end
 
 
   end

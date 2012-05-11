@@ -55,7 +55,7 @@ GIT
 
 GIT
   remote: git://github.com/ikusei/goldencobra_email_templates.git
-  revision: ff64a075ba6a71ec2b506278d3297a08f7b2edbc
+  revision: 60512b8968a989e2062c03f3156c5c57759283a7
   specs:
     goldencobra_email_templates (0.0.1)
       goldencobra
@@ -116,7 +116,7 @@ GEM
       activerecord (>= 2.3.14)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bourbon (1.4.0)
+    bourbon (2.1.0)
       sass (>= 3.1)
     builder (3.0.0)
     cancan (1.6.7)
@@ -398,6 +398,7 @@ DEPENDENCIES
   mysql2
   pry
   rb-fsevent!
+  rspec
   rspec-rails
   sqlite3
   thin

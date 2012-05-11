@@ -67,5 +67,12 @@ FactoryGirl.define do
     r.content_txt "Emails are great"
     r.title "Newsletters are great"
     r.subject "Awesome Email incoming"
+    r.template_tag "my template tag"
+  end
+
+  factory :widget, class: Goldencobra::Widget do |w|
+    w.title "Testtitel"
+    w.content "{% newsletter_form tagname %}"
+    w.article_ids [1,2]
   end
 end

@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require "factory_girl"
 require "factory_girl_rails"
+require 'capybara/rspec'
 require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -21,7 +22,7 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-
+  config.mock_with :rspec
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -39,5 +40,6 @@ RSpec.configure do |config|
   config.after(:each, :type => :acceptance) { Warden.test_reset! }
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
+  config.include FactoryGirl::Syntax::Methods
 
 end

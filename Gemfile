@@ -20,6 +20,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec'
   gem 'sqlite3'
   gem 'cucumber'
   gem 'cucumber-rails', '~> 1.3.0' 
@@ -27,7 +28,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
-gem 'webrat'
+  gem 'webrat'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-cucumber'

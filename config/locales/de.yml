@@ -12,3 +12,7 @@ de:
         lastname: "Nachname"
         firstname: "Vorname"
         title: "Titel"
+  email:
+    subject:
+      subscription_canceled: "Sie sind nicht mehr angemeldet"
+      subscription_confirmed: "Erfolgreich angemeldet"

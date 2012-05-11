@@ -12,3 +12,7 @@ en:
         lastname: "Lastname"
         firstname: "Firstname"
         title: "Title"
+  email:
+    subject:
+      subscription_canceled: "Subscription canceled"
+      subscription_confirmed: "Subscription successful"
