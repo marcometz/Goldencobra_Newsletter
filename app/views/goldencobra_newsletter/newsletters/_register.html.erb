@@ -10,13 +10,13 @@
 	  <div class='<%="#{css_prefix}-field-group" %>'>
 	    <ul>
 	      <li>
-	        <%= radio_button_tag(:gender, "male") %>
+	        <%= radio_button_tag(:gender, "1") %>
 	        <%= label_tag(t('activerecord.attributes.user.male'), nil, class: "newsletter_radio_label") %> <span class="asterisk">*</span>
 					
 	      </li>
 
 	      <li>
-	        <%= radio_button_tag(:gender, "female") %>
+	        <%= radio_button_tag(:gender, "0") %>
 	        <%= label_tag(t('activerecord.attributes.user.female'), nil, class: "newsletter_radio_label") %>
 	      </li>
 	    </ul>

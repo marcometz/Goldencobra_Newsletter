@@ -41,7 +41,7 @@
                                                         <td valign="top" style="border-collapse: collapse;">
                                                             <div style="color: #505050;font-family:Helvetica,Arial,sans-serif;font-size: 14px;line-height: 150%;text-align: left;">
                                                               Sie haben sich vom Newsletter '<%= @template.subject %>' abgemeldet.<br />
-                                                              Sollte dies versehentlich geschehen sein, koennen Sie sich problemlos <a href="http://cloudforum.tagesspiegel.de/goldencobra_newsletter/newsletters/subscribe?email=<%= @user.email%>&tag=<%= @template.template_tag %>">wieder anmelden</a>.
+                                                              Sollte dies versehentlich geschehen sein, koennen Sie sich problemlos <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/subscribe?email=<%= @user.email%>&tag=<%= @template.template_tag %>'>wieder anmelden</a>.
                                                             </div>
                                                         </td>
                                                     </tr>

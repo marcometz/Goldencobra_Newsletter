@@ -19,6 +19,8 @@ module GoldencobraNewsletter
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
     liquid_methods :newsletter_tags
 
+    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user
+
     def full_user_name
       [user.firstname, user.lastname].join(" ")
     end
@@ -32,5 +34,16 @@ module GoldencobraNewsletter
       
     end
 
+    def subscribe!(email, newsletter_tag)
+      user = User.find_by_email(email)
+      newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
+      tags = []
+      tags << newsreg.newsletter_tags
+      tags << newsletter_tag.to_s
+      updated_tags = tags.compact.uniq.join(",")
+      if newsreg.update_attributes(newsletter_tags: updated_tags)
+        GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag).deliver
+      end
+    end
   end
 end

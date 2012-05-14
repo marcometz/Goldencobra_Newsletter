@@ -11,13 +11,11 @@ describe GoldencobraNewsletter::NewsletterRegistration do
     end
 
     before(:each) do
-      user = mock_model(User, firstname: "Tim", lastname: "Test", email: "holger@ikusei.de", password: "123456", password_confirmation: "123456")
-      #@newsletter_registration = mock_model(GoldencobraNewsletter::NewsletterRegistration, user: user, is_subscriber: true, company_name: "ikusei")
+      @user = mock_model(User, firstname: "Tim", lastname: "Test", email: "holger@ikusei.de", password: "123456", password_confirmation: "123456")
     end
     
     it "should have a newsletter_tag when signing up" do
-      user = mock_model(User, firstname: "Tim", lastname: "Test", email: "holger@ikusei.de", password: "123456", password_confirmation: "123456")
-      @newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.create(user: user, is_subscriber: true, company_name: "ikusei")
+      @newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.create(user: @user, is_subscriber: true, company_name: "ikusei")
       @newsletter_registration.newsletter_tags="newsletter-cloudforum"
       @newsletter_registration.newsletter_tags.should == "newsletter-cloudforum"
     end
