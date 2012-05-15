@@ -9,6 +9,8 @@ module GoldencobraNewsletter
 
       ApplicationController.helper(GoldencobraNewsletter::NewslettersHelper)
       ActionController::Base.helper(GoldencobraNewsletter::NewslettersHelper)
+      
+      Devise::SessionsController.helper(GoldencobraNewsletter::NewslettersHelper)  
     end
 
   end
