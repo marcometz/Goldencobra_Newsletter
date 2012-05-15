@@ -1,10 +1,6 @@
 GoldencobraNewsletter::Engine.routes.draw do
 
-  # get 'newsletters/register'
   match 'newsletters/register' => 'newsletters#register'
-
-
-
-  # => 'events#register', :as => :register_event
-
+  match 'newsletters/unsubscribe' => 'newsletters#unsubscribe'
+  match 'newsletters/subscribe' => 'newsletters#subscribe'
 end

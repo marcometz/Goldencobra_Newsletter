@@ -60,6 +60,19 @@ FactoryGirl.define do
   factory :newsletter_registration, :class => GoldencobraNewsletter::NewsletterRegistration do |r|
     r.is_subscriber true
     r.company_name "Amazon Inc."
-  
+  end
+
+  factory :email_template, class: GoldencobraEmailTemplates::EmailTemplate do |r|
+    r.content_html "<div>Emails are great</div>"
+    r.content_txt "Emails are great"
+    r.title "Newsletters are great"
+    r.subject "Awesome Email incoming"
+    r.template_tag "my template tag"
+  end
+
+  factory :widget, class: Goldencobra::Widget do |w|
+    w.title "Testtitel"
+    w.content "{% newsletter_form tagname %}"
+    w.article_ids [1,2]
   end
 end

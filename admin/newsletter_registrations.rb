@@ -13,6 +13,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       u.user.email if u.user && u.user.email
     end
     column :company_name
+    column :newsletter_tags
     column :is_subscriber do |nr|
       nr.is_subscriber
     end
@@ -38,7 +39,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   
   if ActiveRecord::Base.connection.table_exists?("goldencobra_email_templates_email_templates")
     GoldencobraEmailTemplates::EmailTemplate.all.each do |emailtemplate|
-      batch_action "send_mail_#{emailtemplate.title.parameterize.underscore}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
+      batch_action "E-Mail senden: #{emailtemplate.title}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
         GoldencobraNewsletter::NewsletterRegistration.find(selection).each do |newsreg|
           GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
           newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")

@@ -11,6 +11,8 @@ require "factory_girl/step_definitions"
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara-webkit'
+require 'email_spec'
+require 'email_spec/cucumber'
 
 #FactoryGirl.find_definitions
 
@@ -64,3 +66,10 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 World FactoryGirl::Syntax::Methods
+
+#Around('@email') do |scenario, block|
+#  ActionMailer::Base.delivery_method = :test
+#  ActionMailer::Base.perform_deliveries = true
+#  ActionMailer::Base.deliveries.clear
+#  block.call
+#end

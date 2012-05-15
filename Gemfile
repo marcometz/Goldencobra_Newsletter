@@ -16,9 +16,11 @@ group :development do
   gem 'guard-annotate'
   gem 'pry'
   gem 'thin'
+  gem 'git-pivotal'
 end
 
 group :test do
+  gem 'rspec'
   gem 'sqlite3'
   gem 'cucumber'
   gem 'cucumber-rails', '~> 1.3.0' 
@@ -26,6 +28,7 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'webrat'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-cucumber'
@@ -33,4 +36,5 @@ group :test do
   gem 'rb-fsevent', :git => 'git://github.com/ttilley/rb-fsevent.git', :branch => 'pre-compiled-gem-one-off'
   gem 'growl'
   gem 'launchy'
+  gem 'email_spec'
 end
