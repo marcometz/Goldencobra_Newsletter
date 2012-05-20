@@ -10,7 +10,10 @@ module GoldencobraNewsletter
 
       ApplicationController.helper(GoldencobraNewsletter::NewslettersHelper)
       ActionController::Base.helper(GoldencobraNewsletter::NewslettersHelper)
-      DeviseController.helper(GoldencobraNewsletter::NewslettersHelper)           
+      DeviseController.helper(GoldencobraNewsletter::NewslettersHelper)       
+      
+      Devise::SessionsController.helper(GoldencobraNewsletter::ApplicationHelper)            
+      Devise::SessionsController.helper(GoldencobraNewsletter::NewslettersHelper)            
     end
 
   end
