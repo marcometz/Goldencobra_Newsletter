@@ -21,7 +21,7 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'sqlite3'
+  gem 'mysql2'
   gem 'cucumber'
   gem 'cucumber-rails', '~> 1.3.0' 
   gem "factory_girl_rails"
