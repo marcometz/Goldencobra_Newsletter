@@ -7,15 +7,17 @@ module GoldencobraNewsletter
       ApplicationController.helper(GoldencobraNewsletter::ApplicationHelper)
       ActionController::Base.helper(GoldencobraNewsletter::ApplicationHelper)
       DeviseController.helper(GoldencobraNewsletter::ApplicationHelper)           
-
+      Devise::SessionsController.helper(GoldencobraNewsletter::ApplicationHelper)            
+      Devise::PasswordsController.helper(GoldencobraNewsletter::ApplicationHelper)            
+            
       ApplicationController.helper(GoldencobraNewsletter::NewslettersHelper)
       ActionController::Base.helper(GoldencobraNewsletter::NewslettersHelper)
       DeviseController.helper(GoldencobraNewsletter::NewslettersHelper)       
-      
-      Devise::SessionsController.helper(GoldencobraNewsletter::ApplicationHelper)            
       Devise::SessionsController.helper(GoldencobraNewsletter::NewslettersHelper)   
       Devise::PasswordsController.helper(GoldencobraNewsletter::NewslettersHelper)   
-      Devise::PasswordsController.helper(GoldencobraNewsletter::ApplicationHelper)            
+      
+
+
     end
 
   end

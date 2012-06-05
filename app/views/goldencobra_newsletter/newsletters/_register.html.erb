@@ -1,6 +1,6 @@
 <% css_prefix = "goldencobra-newsletter-registration" %>
 	<h2 class="boxheader"><%= s("goldencobra_newsletter.newsletters_widget.headline") %></h2>
-	<p><%= s("goldencobra_newsletter.newsletters_widget.description")%></p>
+	<p class="description"><%= s("goldencobra_newsletter.newsletters_widget.description")%></p>
 
 	<%#= form_tag "/goldencobra_newsletter/newsletters/register", :remote => true, :id => "goldencobra-newsletter-registration-form" do %>
 	<form action="/goldencobra_newsletter/newsletters/register" method="post" data-remote="true" accept-charset="utf-8" id="goldencobra-newsletter-registration-form">
@@ -47,6 +47,6 @@
 	
 	<br />
 	
-	<p><%= s("goldencobra_newsletter.newsletters_widget.bottom_text")%></p><br />
-	<p><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations")%><br />
+	<p class="bottom_text"><%= s("goldencobra_newsletter.newsletters_widget.bottom_text")%></p><br />
+	<p class="privacy_informations"><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations")%><br />
 		<a href='<%= "#{s('goldencobra_newsletter.newsletters_widget.privacy_informations_link')}" %>'><%= s("goldencobra_newsletter.newsletters_widget.privacy_informations_link_text")%></a></p>
