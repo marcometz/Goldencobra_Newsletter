@@ -97,5 +97,5 @@ Feature: Display newsletter module and register for newsletters
     When I go to the admin list of newsletter_registrations
     Then I should see "newsletter registrations"
     When I check "collection_selection_toggle_all"
-    And I click on "batch_actions_button"
+    And I click on "Batch Actions"
     And I click on "E-Mail senden: Newsletters are great"
