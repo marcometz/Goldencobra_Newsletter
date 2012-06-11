@@ -49,7 +49,7 @@ module GoldencobraNewsletter
 
     def unsubscribe
       @user = User.find_by_email(params[:email])
-      newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first
+      newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first if @user
       if newsletter_registration && @user
         tags = []
         tags << newsletter_registration.newsletter_tags
@@ -57,8 +57,10 @@ module GoldencobraNewsletter
         newsletter_registration.update_attributes(newsletter_tags: tags.compact.join(","))
         @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(params[:tag])
         GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(@user, @template).deliver
+        render nothing: true
+      else
+        render 'no_registration_found', layout: "application"
       end
-      render nothing: true
     end
 
     def subscribe

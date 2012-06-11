@@ -16,3 +16,6 @@ de:
     subject:
       subscription_canceled: "Sie sind nicht mehr angemeldet"
       subscription_confirmed: "Erfolgreich angemeldet"
+    no_record_found:
+      headline: "Wir haben leider keine Anmeldung gefunden"
+      body: "Leider können wir keine Anmeldung mit dieser E-Mail Adresse finden. Vermutlich sind Sie bereits abgemeldet. Sollten Sie wider Erwarten weiterhin E-Mails erhalten, wenden Sie sich bitte an uns."
