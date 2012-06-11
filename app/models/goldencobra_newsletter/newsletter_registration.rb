@@ -45,5 +45,13 @@ module GoldencobraNewsletter
         GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag).deliver
       end
     end
+
+    def send_double_opt_in(email, newsletter_tag)
+      user = User.find_by_email(email)
+      newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
+      if user && newsreg
+        GoldencobraNewsletter::NewsletterMailer.double_opt_in(email, newsletter_tag).deliver
+      end
+    end
   end
 end

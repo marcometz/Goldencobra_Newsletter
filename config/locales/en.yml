@@ -16,6 +16,7 @@ en:
     subject:
       subscription_canceled: "Subscription canceled"
       subscription_confirmed: "Subscription successful"
+      double_opt_in: "Please confirm subscription"
     no_record_found:
       headline: "We couldn't find you in our records."
       body: "It looks like you are already unsubscribed as we couldn't find a record with your email. If you continue to get email from us, please contact us."

@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/ikusei/Goldencobra.git
-  revision: 29e80c3a0224878f143b14524cb1a1df75c7c11e
+  revision: 4f106f3aaf53e8145389aa4fc7a4c9c4b78f0b0e
   specs:
     goldencobra (1.0.3)
       activeadmin
@@ -255,7 +255,7 @@ GEM
     multi_json (1.3.6)
     multipart-post (1.1.5)
     mysql2 (0.3.11)
-    nokogiri (1.5.3)
+    nokogiri (1.5.4)
     oa-core (0.0.5)
       rack (~> 1.1)
     oa-oauth (0.0.1)

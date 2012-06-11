@@ -43,6 +43,16 @@ module GoldencobraNewsletter
       end
     end
 
+    def double_opt_in(email, newsletter_tag)
+      @user = User.find_by_email(email)
+      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
+      if @user && @template
+        mail to: @user.email, subject: t(:double_opt_in, scope: [:email, :subject])
+      else
+        do_not_deliver!
+      end
+    end
+
 
   end
 end
