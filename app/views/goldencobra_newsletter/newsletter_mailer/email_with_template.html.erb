@@ -84,7 +84,8 @@
                                           <tbody>
                                             <tr>
                                               <td valign="middle" style="border-collapse: collapse;border: 0;" id="social" colspan="2">
-                                              <div style="color: #707070;font-family:Helvetica,Arial,sans-serif;font-size: 12px;line-height: 125%; align:center;"><p>Von diesem Newsletter <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/newsletters/unsubscribe?tag=<%= @email_template.template_tag %>&token=<%= @user.authentication_token %>'>abmelden</a></p></div>                                                    </td>
+                                                <div style="color: #707070;font-family:Helvetica,Arial,sans-serif;font-size: 12px;line-height: 125%; align:center;"><p>Von diesem Newsletter <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/unsubscribe?tag=<%= @email_template.template_tag %>&token=<%= @user.authentication_token %>'>abmelden</a></p></div>
+                                              </td>
                                             </tr>
                                           </tbody>
                                         </table>

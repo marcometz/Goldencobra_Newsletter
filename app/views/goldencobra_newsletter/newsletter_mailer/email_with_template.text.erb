@@ -1,2 +1,10 @@
 <% template = Liquid::Template.parse(@email_template.content_txt) %>
 <%= raw(template.render(GoldencobraNewsletter::NewsletterRegistration::LiquidParser)) %>
+
+-----------------------------------------
+<%# Wenn es sich um einen Newsletter handelt, hat das Template einen Tag erhalten. Dann erscheint hier der Abmelden Link %>
+<% if @email_template.template_tag && @email_template.template_tag.length > 0 %>
+  Von diesem Newsletter abmelden?
+  Besuchen Sie diesen Link in Ihrem Browser: http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/unsubscribe?tag=<%= @email_template.template_tag %>&token=<%= @user.authentication_token %>
+<% end %>
+

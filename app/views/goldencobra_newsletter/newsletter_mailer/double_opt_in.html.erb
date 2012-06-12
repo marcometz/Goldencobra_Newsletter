@@ -41,7 +41,7 @@
                                                         <td valign="top" style="border-collapse: collapse;">
                                                             <div style="color: #505050;font-family:Helvetica,Arial,sans-serif;font-size: 14px;line-height: 150%;text-align: left;">
                                                               Bitte best&auml;tigen Sie die Anmeldung zum Newsletter indem Sie auf den folgenden Link klicken:<br />
-                                                              <p><a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/newsletters/subscribe?tag=<%= @template.template_tag %>&token=<%= @user.authentication_token %>'>Anmeldung best&auml;tigen</a></p>
+                                                              <p><a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/subscribe?tag=<%= @template.template_tag %>&token=<%= @user.authentication_token %>'>Anmeldung best&auml;tigen</a></p>
                                                             </div>
                                                         </td>
                                                     </tr>
