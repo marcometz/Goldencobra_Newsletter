@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: git://github.com/ikusei/active_admin.git
-  revision: dc2424b0daec2c624decc32eed24418e11edac44
+  revision: b0c12d968f0ca7fd57b20b93ff21ffaec2295cf2
   specs:
     activeadmin (0.4.4)
       bourbon (>= 1.0.0)

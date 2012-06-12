@@ -18,8 +18,7 @@ module GoldencobraNewsletter
     validates_presence_of :company_name
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
     liquid_methods :newsletter_tags
-
-    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user
+    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id
 
     def full_user_name
       [self.user.firstname, self.user.lastname].join(" ")
@@ -28,6 +27,16 @@ module GoldencobraNewsletter
     def self.generate_random_dummy_password
         Digest::MD5.new.hexdigest("pass-#{Time.now.to_f}")
     end
+    
+    scope :vita_title_eq, lambda { |text| includes(:vita_steps).where(:goldencobra_vita => {:title => text}) }
+    search_methods :vita_title_eq
+    
+    scope :vita_date_gte, lambda { |datum| includes(:vita_steps).where("goldencobra_vita.created_at > '#{datum} 00:00'") }
+    search_methods :vita_date_gte
+
+    scope :vita_date_lte, lambda { |datum| includes(:vita_steps).where("goldencobra_vita.created_at < '#{datum} 00:00'") }
+    search_methods :vita_date_lte
+
     
     
     def self.render_formular(tag_name)

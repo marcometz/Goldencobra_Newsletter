@@ -2,7 +2,9 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   # menu :parent => "Newsletter Registration"
   controller.authorize_resource :class => GoldencobraNewsletter::NewsletterRegistration
   filter :company_name
-  filter :is_subscriber
+  filter :is_subscriber, :as => :select
+  filter :vita_title, :as => :select, :collection => ["Mail delivered: newsletter", "Mail delivery failed: newsletter"]
+  filter :vita_date, :as => :date_range
   
   index do
     selectable_column
