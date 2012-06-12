@@ -64,7 +64,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       batch_action "E-Mail senden: #{emailtemplate.title}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
         GoldencobraNewsletter::NewsletterRegistration.find(selection).each do |newsreg|
           if newsreg.is_subscriber
-            if newsreg.user.email.present? 
+            if newsreg.user && newsreg.user.email.present? 
               GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
               newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
             else
