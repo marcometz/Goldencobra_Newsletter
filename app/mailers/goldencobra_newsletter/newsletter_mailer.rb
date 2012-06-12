@@ -27,7 +27,7 @@ module GoldencobraNewsletter
       @user = user
       @template = email_template
       if @user && @template
-        mail to: @user.email, subject: t(:subscription_canceled, scope: [:email, :subject])
+        mail to: @user.email, subject: t(:subscription_canceled, scope: [:email, :subject]), :css => "/goldencobra_events/email"
       else
         do_not_deliver!
       end
@@ -37,7 +37,7 @@ module GoldencobraNewsletter
       @user = User.find_by_email(email)
       @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(email_template_tag)
       if @user && @template
-        mail to: @user.email, subject: t(:subscription_confirmed, scope: [:email, :subject])
+        mail to: @user.email, subject: t(:subscription_confirmed, scope: [:email, :subject]), :css => "/goldencobra_events/email"
       else
         do_not_deliver!
       end
@@ -47,7 +47,7 @@ module GoldencobraNewsletter
       @user = User.find_by_email(email)
       @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
       if @user && @template
-        mail to: @user.email, subject: t(:double_opt_in, scope: [:email, :subject])
+        mail to: @user.email, subject: t(:double_opt_in, scope: [:email, :subject]), :css => "/goldencobra_events/email"
       else
         do_not_deliver!
       end
