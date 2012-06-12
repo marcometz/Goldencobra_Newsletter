@@ -22,7 +22,7 @@ module GoldencobraNewsletter
     attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user
 
     def full_user_name
-      [user.firstname, user.lastname].join(" ")
+      [self.user.firstname, self.user.lastname].join(" ")
     end
 
     def self.generate_random_dummy_password
@@ -42,6 +42,8 @@ module GoldencobraNewsletter
       tags << newsletter_tag.to_s
       updated_tags = tags.compact.uniq.join(",")
       if newsreg.update_attributes(newsletter_tags: updated_tags)
+        logger.warn("=============")
+        logger.warn("mail wird gesendet")
         GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag).deliver
       end
     end

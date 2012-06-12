@@ -34,7 +34,22 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       row :company_name
       row :is_subscriber
     end
-
+    panel "Vita" do
+      table do
+        tr do
+          th t('activerecord.attributes.vita.title')
+          th t('activerecord.attributes.vita.description')
+          th t('activerecord.attributes.vita.created_at')
+        end
+        newsletter_registration.vita_steps.each do |vita|
+          tr do
+            td vita.title
+            td vita.description
+            td l(vita.created_at, format: :short)
+          end
+        end
+      end
+    end #end panel vita
   end
   
   if ActiveRecord::Base.connection.table_exists?("goldencobra_email_templates_email_templates")
