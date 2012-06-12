@@ -41,7 +41,6 @@
                                                         <td valign="top" style="border-collapse: collapse;">
                                                             <div style="color: #505050;font-family:Helvetica,Arial,sans-serif;font-size: 14px;line-height: 150%;text-align: left;">
                                                               Sie haben sich zum Newsletter '<%= @template.subject %>' angemeldet.<br />
-                                                              <!--                                                              Vergange Newsletter zum Thema finden Sie unter <a href="http://<%#= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_email_templaets/email_template/archiv?tag=<%#= @template.template_tag %>">Newsletter Archiv</a>.-->
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -83,7 +82,7 @@
                                           <tbody>
                                             <tr>
                                               <td valign="middle" style="border-collapse: collapse;border: 0;" id="social" colspan="2">
-                                                <div style="color: #707070;font-family:Helvetica,Arial,sans-serif;font-size: 12px;line-height: 125%; align:center;"><p>Von diesem Newsletter <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/newsletters/unsubscribe?tag=<%= @template.template_tag %>&token=<%= @user.authentication_token %>'>abmelden</a></p></div>
+                                                <div style="color: #707070;font-family:Helvetica,Arial,sans-serif;font-size: 12px;line-height: 125%; align:center;"><p>Von diesem Newsletter <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/unsubscribe?tag=<%= @template.template_tag %>&token=<%= @user.authentication_token %>'>abmelden</a></p></div>
                                               </td>
                                             </tr>
                                           </tbody>
