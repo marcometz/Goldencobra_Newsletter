@@ -28,6 +28,9 @@ module GoldencobraNewsletter
         Digest::MD5.new.hexdigest("pass-#{Time.now.to_f}")
     end
     
+    scope :is_subscriber, where(:is_subscriber => true)
+    scope :is_no_subscriber, where(:is_subscriber => false)
+    
     scope :vita_title_eq, lambda { |text| includes(:vita_steps).where(:goldencobra_vita => {:title => text}) }
     search_methods :vita_title_eq
     

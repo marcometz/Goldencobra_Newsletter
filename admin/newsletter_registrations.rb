@@ -6,6 +6,11 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   filter :vita_title, :as => :select, :collection => ["Mail delivered: newsletter", "Mail delivery failed: newsletter"]
   filter :vita_date, :as => :date_range
   
+  scope "Alle", :scoped, :default => true
+  scope :is_subscriber
+  scope :is_no_subscriber
+  
+  
   index do
     selectable_column
     column :user do |nr|
@@ -58,11 +63,13 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     GoldencobraEmailTemplates::EmailTemplate.all.each do |emailtemplate|
       batch_action "E-Mail senden: #{emailtemplate.title}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
         GoldencobraNewsletter::NewsletterRegistration.find(selection).each do |newsreg|
-          if newsreg.user.email.present?
-            GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
-            newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
-          else
-            newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivery failed: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
+          if newsreg.is_subscriber
+            if newsreg.user.email.present? 
+              GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
+              newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
+            else
+              newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivery failed: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
+            end
           end
         end
         redirect_to :action => :index, :notice => "Newsletter wurden versendet"
