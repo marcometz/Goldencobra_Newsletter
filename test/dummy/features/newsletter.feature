@@ -45,8 +45,10 @@ Feature: Display newsletter module and register for newsletters
     And I fill in "email" with "michaela@mustermann.de"
     When I press "Eintragen"
     #Then I should see "Erfolgreich eingetragen"
-    When I go to the admin list of newsletter_registrations
-    Then I should see "monthly_newsletter"
+
+    # Because of double-opt-in you don't get a registration right away
+    #When I go to the admin list of newsletter_registrations
+    #Then I should see "monthly_newsletter"
  
   @javascript
   Scenario: Successfully register for a newsletter
@@ -97,5 +99,5 @@ Feature: Display newsletter module and register for newsletters
     When I go to the admin list of newsletter_registrations
     Then I should see "newsletter registrations"
     When I check "collection_selection_toggle_all"
-    And I click on "batch_actions_button"
+    And I click on "Batch Actions"
     And I click on "E-Mail senden: Newsletters are great"

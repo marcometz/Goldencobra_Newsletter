@@ -19,6 +19,7 @@ describe GoldencobraNewsletter::NewsletterRegistration do
       @newsletter_registration.newsletter_tags="newsletter-cloudforum"
       @newsletter_registration.newsletter_tags.should == "newsletter-cloudforum"
     end
+
   end
 
 end

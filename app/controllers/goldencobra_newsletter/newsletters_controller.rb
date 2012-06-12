@@ -2,11 +2,15 @@ module GoldencobraNewsletter
   class NewslettersController < ApplicationController
     protect_from_forgery :except => [:register]
 
+    #################################################################
+    # Register method is called from registration form on website frontend.
+    # If @user.create is successfull, a double-opt-in email is send.
+    # User has to click link inside email to confirm her registration
+    # Only then a newsletter.template_tag will be saved for the user.
+    # Without a newsletter_tag the user cannot receive this newsletter.
+    #################################################################
+    
     def register
-
-      # wenn keien fehler: formular aus dom entfernen und danke hinschreiben
-      # in session als newsletter-abonentn markieren, so dass formular nicht nochmal angezegit wird
-
       @success = false
       @user = User.find_by_email(params[:email])
 
@@ -40,34 +44,43 @@ module GoldencobraNewsletter
 
       end
       if @success
-        newsletter_registration.subscribe!(@user.email, params[:newsletter_tags])
+        #newsletter_registration.subscribe!(@user.email, params[:newsletter_tags])
+        newsletter_registration.send_double_opt_in(@user.email, params[:newsletter_tags])
       end
       respond_to do |format|
         format.js
       end
      end
 
+    #################################################################
+    # Find a NewsletterRegistration by email and delete the given
+    # template_tag from the array of template_tags
+    #################################################################
+
     def unsubscribe
-      @user = User.find_by_email(params[:email])
-      newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first
-      if newsletter_registration && @user
-        tags = []
-        tags << newsletter_registration.newsletter_tags
-        tags.delete(params[:tag])
-        newsletter_registration.update_attributes(newsletter_tags: tags.compact.join(","))
-        @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(params[:tag])
-        GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(@user, @template).deliver
+      @user = User.find_by_authentication_token(params[:token])
+      newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first if @user
+      if newsletter_registration && @user && newsletter_registration.newsletter_tags.include?(params[:tag])
+        newsletter_registration.unsubscribe!(@user.email, params[:tag])
+        render 'unsubscribe', layout: "application"
+      else
+        render 'no_registration_found', layout: "application"
       end
-      render nothing: true
     end
 
+    #################################################################
+    # Find a NewsletterRegistration by authentication_token and
+    # save a given template_tag in the NewsletterRegistrations
+    # array of newsletter template_tags
+    #################################################################
+
     def subscribe
-      @user = User.find_by_email(params[:email])
+      @user = User.find_by_authentication_token(params[:token])
       newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first
       if newsletter_registration && @user
-        newsletter_registration.subscribe!(params[:email], params[:tag])
+        newsletter_registration.subscribe!(@user.email, params[:tag])
       end
-      render nothing: true
+      render 'subscribe', layout: "application"
     end
 
   end

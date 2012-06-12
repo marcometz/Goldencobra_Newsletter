@@ -34,6 +34,17 @@ module GoldencobraNewsletter
       
     end
 
+    def unsubscribe!(email, newsletter_tag)
+      user = User.find_by_email(email)
+      newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
+      tags = []
+      tags << newsreg.newsletter_tags
+      tags.delete(newsletter_tag)
+      newsreg.update_attributes(newsletter_tags: tags.compact.join(","))
+      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
+      GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(@user, @template).deliver
+    end
+
     def subscribe!(email, newsletter_tag)
       user = User.find_by_email(email)
       newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
@@ -45,6 +56,14 @@ module GoldencobraNewsletter
         logger.warn("=============")
         logger.warn("mail wird gesendet")
         GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag).deliver
+      end
+    end
+
+    def send_double_opt_in(email, newsletter_tag)
+      user = User.find_by_email(email)
+      newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
+      if user && newsreg
+        GoldencobraNewsletter::NewsletterMailer.double_opt_in(email, newsletter_tag).deliver
       end
     end
   end

@@ -4,7 +4,7 @@
         <!-- Facebook sharing information tags -->
         <meta content="eMobility Summit Mai 2012" property="og:title">
         
-        <title>Sie haben sich erfolgreich zum Newsletter "<%= @template.subject %>" angemeldet.</title>
+        <title>Bitte best&auml;tigen Sie Ihre Anmeldung</title>
 		
 </head>
     <body marginwidth="0" marginheight="0" style="-webkit-text-size-adjust: none;margin: 0;padding: 0;background-color: #FAFAFA;width: 100% !important;" offset="0" topmargin="0" leftmargin="0">
@@ -40,7 +40,8 @@
                                                     <tbody><tr>
                                                         <td valign="top" style="border-collapse: collapse;">
                                                             <div style="color: #505050;font-family:Helvetica,Arial,sans-serif;font-size: 14px;line-height: 150%;text-align: left;">
-                                                              Sie haben sich zum Newsletter '<%= @template.subject %>' angemeldet.<br />
+                                                              Bitte best&auml;tigen Sie die Anmeldung zum Newsletter indem Sie auf den folgenden Link klicken:<br />
+                                                              <p><a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/subscribe?tag=<%= @template.template_tag %>&token=<%= @user.authentication_token %>'>Anmeldung best&auml;tigen</a></p>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -71,30 +72,6 @@
                                   </table>
                                 </td>
                               </tr>
-                            <% if @template.template_tag && @template.template_tag.length > 0 %>
-                            <tr>
-                            	<td valign="top" style="border-collapse: collapse;">
-                                <table width="600" cellspacing="0" cellpadding="10" border="0" style="background-color: #FFFFFF;border-top: 0;" id="templateFooter">
-                                  <tbody>
-                                    <tr>
-                                      <td valign="top" style="border-collapse: collapse;" class="footerContent">
-                                        <table width="100%" cellspacing="0" cellpadding="10" border="0">
-                                          <tbody>
-                                            <tr>
-                                              <td valign="middle" style="border-collapse: collapse;border: 0;" id="social" colspan="2">
-                                                <div style="color: #707070;font-family:Helvetica,Arial,sans-serif;font-size: 12px;line-height: 125%; align:center;"><p>Von diesem Newsletter <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/unsubscribe?tag=<%= @template.template_tag %>&token=<%= @user.authentication_token %>'>abmelden</a></p></div>
-                                              </td>
-                                            </tr>
-                                          </tbody>
-                                        </table>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </td>
-                            </tr>
-                          <% end %>
-
                         </tbody>
                       </table>
                         <br>
