@@ -39,7 +39,7 @@ module GoldencobraNewsletter
       newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
       tags = []
       tags << newsreg.newsletter_tags
-      tags.delete(params[:tag])
+      tags.delete(newsletter_tag)
       newsletter_registration.update_attributes(newsletter_tags: tags.compact.join(","))
       @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
       GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(@user, @template).deliver
