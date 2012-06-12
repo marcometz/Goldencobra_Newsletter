@@ -45,8 +45,10 @@ Feature: Display newsletter module and register for newsletters
     And I fill in "email" with "michaela@mustermann.de"
     When I press "Eintragen"
     #Then I should see "Erfolgreich eingetragen"
-    When I go to the admin list of newsletter_registrations
-    Then I should see "monthly_newsletter"
+
+    # Because of double-opt-in you don't get a registration right away
+    #When I go to the admin list of newsletter_registrations
+    #Then I should see "monthly_newsletter"
  
   @javascript
   Scenario: Successfully register for a newsletter
