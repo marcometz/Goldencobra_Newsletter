@@ -62,9 +62,9 @@ module GoldencobraNewsletter
       newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first if @user
       if newsletter_registration && @user && newsletter_registration.newsletter_tags.include?(params[:tag])
         newsletter_registration.unsubscribe!(@user.email, params[:tag])
-        render 'unsubscribe', layout: "application"
+        render partial: '/goldencobra_newsletter/newsletters/unsubscribe'#, layout: "layouts/application"
       else
-        render 'no_registration_found', layout: "application"
+        render partial: '/goldencobra_newsletter/newsletters/no_registration_found'#, layout: "layouts/application"
       end
     end
 
@@ -80,7 +80,7 @@ module GoldencobraNewsletter
       if newsletter_registration && @user
         newsletter_registration.subscribe!(@user.email, params[:tag])
       end
-      render 'subscribe', layout: "application"
+      render partial: '/goldencobra_newsletter/newsletters/subscribe', layout: "application"
     end
 
   end

@@ -63,7 +63,6 @@ Feature: Display newsletter module and register for newsletters
     And I fill in "phone" with "030 123 456 789"
     And I fill in "email" with "michaela@mustermann.de"
     When I press "Eintragen"
-    Then I should see "Erfolgreich eingetragen"
     When I go to the admin list of newsletter_registrations
     Then I should see "Michaela Mustermann"
     And I should see "michaela@mustermann.de"
