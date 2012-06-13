@@ -86,7 +86,7 @@ module GoldencobraNewsletter
         newsletter_registration.subscribe!(@user.email, params[:tag])
         render 'subscribe', layout: "application"
       else
-        redirect_to 'goldencobra/articles#show'
+        redirect_to '/goldencobra/articles#show'
       end
     end
 
