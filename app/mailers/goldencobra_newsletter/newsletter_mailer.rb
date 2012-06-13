@@ -18,8 +18,10 @@ module GoldencobraNewsletter
       @email_template = email_template
       subject = @email_template.subject.present? ? @email_template.subject : Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject") 
       @user = newsletter.user
-      if @user && @user.present?
+      if @user && @user.present? && newsletter.newsletter_tags.include?(@email_template.template_tag)
         mail to: @user.email, bcc: "#{@email_template.bcc}", :css => "/goldencobra_events/email", :subject => subject
+      else
+        do_not_deliver!
       end
     end
 

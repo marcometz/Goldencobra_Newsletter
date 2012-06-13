@@ -63,7 +63,6 @@ Feature: Display newsletter module and register for newsletters
     And I fill in "phone" with "030 123 456 789"
     And I fill in "email" with "michaela@mustermann.de"
     When I press "Eintragen"
-    Then I should see "Erfolgreich eingetragen"
     When I go to the admin list of newsletter_registrations
     Then I should see "Michaela Mustermann"
     And I should see "michaela@mustermann.de"
@@ -101,3 +100,62 @@ Feature: Display newsletter module and register for newsletters
     When I check "collection_selection_toggle_all"
     And I click on "Batch Actions"
     And I click on "E-Mail senden: Newsletters are great"
+
+  Scenario: Confirm subscription from within email
+    Given the following "guest_users" exist:
+      | firstname | lastname | email            | password | password_confirmation | id | authentication_token |
+      | Timothy   | Thetest  | holger@ikusei.de | 123456   | 123456                |  3 | 123ert456            |
+    And the following "newsletter_registrations" exist:
+      | user_id | company_name | is_subscriber |
+      |    3    | ikusei       |  true         |
+    And the following "email_templates" exist:
+      | content_html                | content_txt      | title                 | template_tag |
+      | <div>Emails are great</div> | Emails are great | Newsletters are great | default      |
+    And the following "articles" exist:
+      | title               | url_name    | active | newsletter |
+      | newsletter-site     | newsletter-site | true   |  false     |
+    When I visit url "/goldencobra_newsletter/newsletters/subscribe?tag=default&token=123ert456"
+    Then I should see "You successfully subscribed" within "#main_article"
+    And I should see "newsletter-site"
+
+  Scenario: Redirect to 404 if no user if found when confirming subscription
+    Given the following "email_templates" exist:
+      | content_html                | content_txt      | title                 | template_tag |
+      | <div>Emails are great</div> | Emails are great | Newsletters are great | default      |
+    And the following "articles" exist:
+      | title               | url_name    | active | newsletter |
+      | newsletter-site     | newsletter-site | true   |  false     |
+    When I visit url "/goldencobra_newsletter/newsletters/subscribe?tag=default"
+    Then I should see "404"
+
+
+  Scenario: Confirm subscription cancellation
+    Given the following "guest_users" exist:
+      | firstname | lastname | email            | password | password_confirmation | id | authentication_token |
+      | Timothy   | Thetest  | holger@ikusei.de | 123456   | 123456                |  3 | 123ert456            |
+    And the following "newsletter_registrations" exist:
+      | user_id | company_name | is_subscriber | newsletter_tags |
+      |    3    | ikusei       |  true         |  default        |
+    And the following "email_templates" exist:
+      | content_html                | content_txt      | title                 | template_tag |
+      | <div>Emails are great</div> | Emails are great | Newsletters are great | default      |
+    And the following "articles" exist:
+      | title               | url_name    | active | newsletter |
+      | newsletter-site     | newsletter-site | true   |  false     |
+    When I visit url "/goldencobra_newsletter/newsletters/unsubscribe?tag=default&token=123ert456"
+    Then I should see "You successfully unsubscribed" within "#main_article"
+    And I should see "newsletter-site"
+
+  Scenario: Show record not found if trying to unsubscribe without registration
+    Given the following "guest_users" exist:
+      | firstname | lastname | email            | password | password_confirmation | id | authentication_token |
+      | Timothy   | Thetest  | holger@ikusei.de | 123456   | 123456                |  3 | 123ert456            |
+    And the following "email_templates" exist:
+      | content_html                | content_txt      | title                 | template_tag |
+      | <div>Emails are great</div> | Emails are great | Newsletters are great | default      |
+    And the following "articles" exist:
+      | title               | url_name    | active | newsletter |
+      | newsletter-site     | newsletter-site | true   |  false     |
+    When I visit url "/goldencobra_newsletter/newsletters/unsubscribe?tag=default&token=123ert456"
+    Then I should see "We couldn't find you in our records" within "#main_article"
+    And I should see "newsletter-site"

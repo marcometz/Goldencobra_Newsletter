@@ -54,7 +54,7 @@ module GoldencobraNewsletter
       tags.delete(newsletter_tag)
       newsreg.update_attributes(newsletter_tags: tags.compact.join(","))
       @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
-      GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(@user, @template).deliver
+      GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(user, @template).deliver
     end
 
     def subscribe!(email, newsletter_tag)
@@ -67,7 +67,7 @@ module GoldencobraNewsletter
       if newsreg.update_attributes(newsletter_tags: updated_tags)
         logger.warn("=============")
         logger.warn("mail wird gesendet")
-        GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag).deliver
+        #GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag).deliver
       end
     end
 
