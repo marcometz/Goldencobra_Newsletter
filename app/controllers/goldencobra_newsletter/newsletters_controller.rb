@@ -44,7 +44,6 @@ module GoldencobraNewsletter
 
       end
       if @success
-        #newsletter_registration.subscribe!(@user.email, params[:newsletter_tags])
         newsletter_registration.send_double_opt_in(@user.email, params[:newsletter_tags])
       end
       respond_to do |format|
@@ -60,12 +59,12 @@ module GoldencobraNewsletter
     def unsubscribe
       @user = User.find_by_authentication_token(params[:token])
       newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first if @user
-      @article = Goldencobra::Article.active.startpage.first
+      @article = Goldencobra::Article.find_by_title("newsletter-site")
       if newsletter_registration && @user && newsletter_registration.newsletter_tags.include?(params[:tag])
         newsletter_registration.unsubscribe!(@user.email, params[:tag])
-        render 'unsubscribe'
+        render 'unsubscribe', layout: "application"
       else
-        render 'no_registration_found'
+        render 'no_registration_found', layout: "application"
       end
     end
 
@@ -78,6 +77,7 @@ module GoldencobraNewsletter
     def subscribe
       @user = User.find_by_authentication_token(params[:token])
       newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first
+      @article = Goldencobra::Article.find_by_title("newsletter-site")
       if newsletter_registration && @user
         newsletter_registration.subscribe!(@user.email, params[:tag])
       end
