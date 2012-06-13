@@ -57,8 +57,10 @@ module GoldencobraNewsletter
     #################################################################
 
     def unsubscribe
-      @user = User.find_by_authentication_token(params[:token])
-      newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first if @user
+      if params[:token]
+        @user = User.find_by_authentication_token(params[:token])
+        newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first if @user
+      end
       @article = Goldencobra::Article.find_by_title("newsletter-site")
       if newsletter_registration && @user && newsletter_registration.newsletter_tags.include?(params[:tag])
         newsletter_registration.unsubscribe!(@user.email, params[:tag])
@@ -75,13 +77,17 @@ module GoldencobraNewsletter
     #################################################################
 
     def subscribe
-      @user = User.find_by_authentication_token(params[:token])
-      newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first
-      @article = Goldencobra::Article.find_by_title("newsletter-site")
-      if newsletter_registration && @user
-        newsletter_registration.subscribe!(@user.email, params[:tag])
+      if params[:token]
+        @user = User.find_by_authentication_token(params[:token])
+        newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where('user_id = ?', @user.id).first
       end
-      render 'subscribe', layout: "application"
+      if newsletter_registration && @user
+        @article = Goldencobra::Article.find_by_title("newsletter-site")
+        newsletter_registration.subscribe!(@user.email, params[:tag])
+        render 'subscribe', layout: "application"
+      else
+        redirect_to 'goldencobra/articles#show'
+      end
     end
 
   end

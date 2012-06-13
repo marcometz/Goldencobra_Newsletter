@@ -118,6 +118,17 @@ Feature: Display newsletter module and register for newsletters
     Then I should see "You successfully subscribed" within "#main_article"
     And I should see "newsletter-site"
 
+  Scenario: Redirect to 404 if no user if found when confirming subscription
+    Given the following "email_templates" exist:
+      | content_html                | content_txt      | title                 | template_tag |
+      | <div>Emails are great</div> | Emails are great | Newsletters are great | default      |
+    And the following "articles" exist:
+      | title               | url_name    | active | newsletter |
+      | newsletter-site     | newsletter-site | true   |  false     |
+    When I visit url "/goldencobra_newsletter/newsletters/subscribe?tag=default"
+    Then I should see "404"
+
+
   Scenario: Confirm subscription cancellation
     Given the following "guest_users" exist:
       | firstname | lastname | email            | password | password_confirmation | id | authentication_token |
