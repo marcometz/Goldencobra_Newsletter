@@ -22,7 +22,7 @@ en:
       body: "We removed Your subscription for this newsletter from our records. We send you a confirmation email."
     subscribe:
       headline: "You successfully subscribed"
-      body: "Your subscription for this newsletter was susscessful. We send you a confirmation email."
+      body: "Your subscription for this newsletter was susscessful."
     no_record_found:
       headline: "We couldn't find you in our records."
       body: "It looks like you are already unsubscribed as we couldn't find a record with your email. If you continue to get email from us, please contact us."

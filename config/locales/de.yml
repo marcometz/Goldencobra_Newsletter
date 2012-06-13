@@ -22,7 +22,7 @@ de:
       body: "Ihre Abmeldung für den Newsletter war erfolgreich. Sie erhalten noch eine E-Mail mit einer Bestätigung für Ihre Abmeldung."
     subscribe:
       headline: "Sie haben sich erfolgreich angemeldet"
-      body: "Vielen Dank für Ihre Anmeldung. Wir haben Ihnen eine E-Mail zur Bestätigung geschickt."
+      body: "Vielen Dank für Ihre Anmeldung."
     no_record_found:
       headline: "Wir haben leider keine Anmeldung gefunden"
       body: "Leider können wir keine Anmeldung mit dieser E-Mail Adresse finden. Vermutlich sind Sie bereits abgemeldet. Sollten Sie wider Erwarten weiterhin E-Mails erhalten, wenden Sie sich bitte an uns."
