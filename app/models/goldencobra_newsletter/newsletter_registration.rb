@@ -49,8 +49,7 @@ module GoldencobraNewsletter
     def unsubscribe!(email, newsletter_tag)
       user = User.find_by_email(email)
       newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
-      tags = []
-      tags << newsreg.newsletter_tags
+      tags = newsreg.newsletter_tags.split(",")
       tags.delete(newsletter_tag)
       newsreg.update_attributes(newsletter_tags: tags.compact.join(","))
       @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
