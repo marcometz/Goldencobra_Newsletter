@@ -14,6 +14,13 @@ require 'capybara-webkit'
 require 'email_spec'
 require 'email_spec/cucumber'
 
+begin
+  Sunspot::Rails::Server.new.start
+  sleep 10
+rescue
+  puts "Solar already running"
+end
+
 #FactoryGirl.find_definitions
 
 Capybara.javascript_driver = :webkit
@@ -73,3 +80,9 @@ World FactoryGirl::Syntax::Methods
 #  ActionMailer::Base.deliveries.clear
 #  block.call
 #end
+
+# shut down the Solr server
+at_exit do
+  Sunspot::Rails::Server.new.stop
+end
+

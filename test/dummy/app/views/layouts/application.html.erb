@@ -37,6 +37,7 @@
 <div id="sidebar">
 
   <%= newsletter_registration_form %>	
+  <%= render_article_widgets(:tagged_with => "sidebar") %>
   <%= yield(:article_widgets) %>
 </div>
 
