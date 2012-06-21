@@ -1,5 +1,7 @@
 ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "Newsletter Registration" do
   # menu :parent => "Newsletter Registration"
+  menu :if => proc{can?(:update, GoldencobraNewsletter::NewsletterRegistration)}
+  
   controller.authorize_resource :class => GoldencobraNewsletter::NewsletterRegistration
   filter :company_name
   filter :is_subscriber, :as => :select
