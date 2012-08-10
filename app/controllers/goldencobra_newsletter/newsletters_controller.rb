@@ -9,7 +9,7 @@ module GoldencobraNewsletter
     # Only then a newsletter.template_tag will be saved for the user.
     # Without a newsletter_tag the user cannot receive this newsletter.
     #################################################################
-    
+
     def register
       @success = false
       @user = User.find_by_email(params[:email])
@@ -23,7 +23,7 @@ module GoldencobraNewsletter
                             :password_confirmation => generated_pass,
                             gender: params[:gender])
       end
-      
+
       if @user.present?
         newsletter_registration = @user.newsletter_registration
 
@@ -63,7 +63,7 @@ module GoldencobraNewsletter
       end
       @article = Goldencobra::Article.find_by_url_name("newsletter-site")
       initialize_article
-      
+
       if newsletter_registration && @user && newsletter_registration.newsletter_tags.include?(params[:tag])
         newsletter_registration.unsubscribe!(@user.email, params[:tag])
         render 'unsubscribe', layout: "application"
@@ -85,7 +85,7 @@ module GoldencobraNewsletter
       end
       if newsletter_registration && @user
         @article = Goldencobra::Article.find_by_url_name("newsletter-site")
-        initialize_article        
+        initialize_article
 
         newsletter_registration.subscribe!(@user.email, params[:tag])
         render 'subscribe', layout: "application"
@@ -106,8 +106,6 @@ module GoldencobraNewsletter
                                   :type => @article.metatag("OpenGraph Type"),
                                   :url => @article.metatag("OpenGraph URL"),
                                   :image => @article.metatag("OpenGraph Image")}
-      
     end
-
   end
 end
