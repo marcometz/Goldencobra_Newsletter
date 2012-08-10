@@ -78,7 +78,54 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       end
     end
   end
-  
-    
 
+  form :html => { :enctype => "multipart/form-data" }  do |f|
+    f.actions
+    f.inputs "Allgemein", class: "foldable inputs" do
+      f.input :company_name
+      f.input :is_subscriber
+      f.input :newsletter_tags
+    end
+    f.inputs "User" do
+    f.fields_for :user_attributes, f.object.user do |u|
+      u.inputs "" do
+        u.input :gender, as: :select, include_blank: false, collection: [["Herr", true],["Frau", false]]
+        u.input :title
+        u.input :firstname
+        u.input :lastname
+        u.input :email
+        u.input :function
+        u.input :phone
+        u.input :fax
+        u.input :facebook
+        u.input :twitter
+        u.input :linkedin
+        u.input :xing
+        u.input :googleplus
+      end
+    end
+    end
+    f.actions
+  end
+
+  controller do
+    def update
+      @newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.find(params[:id])
+      @user = User.find_by_email(params[:newsletter_registration][:user_attributes][:email]) if params[:newsletter_registration][:user_attributes][:email].present?
+      if @user
+        @user.update_attributes(params[:newsletter_registration][:user_attributes])
+      else
+        User.create(params[:newsletter_registration][:user_attributes])
+      end
+      if params[:newsletter_registration][:user_attributes].present?
+        params[:newsletter_registration].delete(:user_attributes)
+      end
+      if @newsletter_registration.update_attributes(params[:newsletter_registration])
+        flash[:notice] = "Update successful"
+      else
+        flash[:error] = "Update not successful"
+      end
+      render action: :index
+    end
+  end
 end
