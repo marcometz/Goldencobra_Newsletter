@@ -1,18 +1,16 @@
 ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "Newsletter Registration" do
-  # menu :parent => "Newsletter Registration"
   menu :if => proc{can?(:update, GoldencobraNewsletter::NewsletterRegistration)}
-  
+
   controller.authorize_resource :class => GoldencobraNewsletter::NewsletterRegistration
   filter :company_name
   filter :is_subscriber, :as => :select
   filter :vita_title, :as => :select, :collection => ["Mail delivered: newsletter", "Mail delivery failed: newsletter"]
   filter :vita_date, :as => :date_range
-  
+
   scope "Alle", :scoped, :default => true
   scope :is_subscriber
   scope :is_no_subscriber
-  
-  
+
   index do
     selectable_column
     column :user do |nr|
@@ -30,7 +28,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   end
 
   actions :all, :except => [:new]
-  
+
   show :title => :full_user_name do
     attributes_table do
       panel "User" do
@@ -60,7 +58,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       end
     end #end panel vita
   end
-  
+
   if ActiveRecord::Base.connection.table_exists?("goldencobra_email_templates_email_templates")
     GoldencobraEmailTemplates::EmailTemplate.all.each do |emailtemplate|
       batch_action "E-Mail senden: #{emailtemplate.title}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
@@ -125,7 +123,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       else
         flash[:error] = "Update not successful"
       end
-      render action: :index
+      redirect_to action: :index
     end
   end
 end
