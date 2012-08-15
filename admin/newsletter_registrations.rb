@@ -6,6 +6,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   filter :is_subscriber, :as => :select
   filter :vita_title, :as => :select, :collection => ["Mail delivered: newsletter", "Mail delivery failed: newsletter"]
   filter :vita_date, :as => :date_range
+  filter :newsletter_tags#:tags, as: :select, collection: tags
 
   scope "Alle", :scoped, :default => true
   scope :is_subscriber
