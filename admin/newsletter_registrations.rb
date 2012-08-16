@@ -6,7 +6,9 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   filter :is_subscriber, :as => :select
   filter :vita_title, :as => :select, :collection => ["Mail delivered: newsletter", "Mail delivery failed: newsletter"]
   filter :vita_date, :as => :date_range
-  filter :newsletter_tags#:tags, as: :select, collection: tags
+  filter :newsletter_tags
+  filter :firstname, :as => :string
+  filter :lastname, :as => :string
 
   scope "Alle", :scoped, :default => true
   scope :is_subscriber
@@ -126,5 +128,27 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       end
       redirect_to action: :index
     end
+  end
+
+  csv do
+    column :id
+    column :company_name
+    column :is_subscriber
+    column :newsletter_tags
+    column :created_at
+    column :updated_at
+    column("Geschlecht"){|nlreg| nlreg.user.gender ? "Herr" : "Frau"}
+    column("Titel"){|nlreg| nlreg.user.title }
+    column("Vorname"){|nlreg| nlreg.user.firstname }
+    column("Nachname"){|nlreg| nlreg.user.lastname }
+    column("E-Mail"){|nlreg| nlreg.user.email }
+    column("Funktion"){|nlreg| nlreg.user.function }
+    column("Telefon"){|nlreg| nlreg.user.phone }
+    column("Fax"){|nlreg| nlreg.user.fax }
+    column("Facebook"){|nlreg| nlreg.user.facebook }
+    column("Twitter"){|nlreg| nlreg.user.twitter }
+    column("LinkedIn"){|nlreg| nlreg.user.linkedin }
+    column("Xing"){|nlreg| nlreg.user.xing }
+    column("Google+"){|nlreg| nlreg.user.googleplus }
   end
 end

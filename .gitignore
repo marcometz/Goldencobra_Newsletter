@@ -23,3 +23,5 @@ test/dummy/db/schema.rb
 .DS_Store
 /test/dummy/solr/
 .rvmrc
+
+/.rvmrc

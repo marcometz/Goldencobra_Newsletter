@@ -27,23 +27,26 @@ module GoldencobraNewsletter
     def self.generate_random_dummy_password
         Digest::MD5.new.hexdigest("pass-#{Time.now.to_f}")
     end
-    
+
     scope :is_subscriber, where(:is_subscriber => true)
     scope :is_no_subscriber, where(:is_subscriber => false)
-    
+
     scope :vita_title_eq, lambda { |text| includes(:vita_steps).where(:goldencobra_vita => {:title => text}) }
     search_methods :vita_title_eq
-    
+
     scope :vita_date_gte, lambda { |datum| includes(:vita_steps).where("goldencobra_vita.created_at > '#{datum} 00:00'") }
     search_methods :vita_date_gte
 
     scope :vita_date_lte, lambda { |datum| includes(:vita_steps).where("goldencobra_vita.created_at < '#{datum} 00:00'") }
     search_methods :vita_date_lte
 
-    
-    
+    scope :firstname_contains, lambda { |text| includes(:user).where('users.firstname LIKE ?', text) }
+    search_methods :firstname_contains
+
+    scope :lastname_contains, lambda { |text| includes(:user).where('users.lastname LIKE ?', text) }
+    search_methods :lastname_contains
+
     def self.render_formular(tag_name)
-      
     end
 
     def unsubscribe!(email, newsletter_tag)
