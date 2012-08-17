@@ -2,23 +2,26 @@
 #
 # Table name: goldencobra_newsletter_newsletter_registrations
 #
-#  id              :integer(4)      not null, primary key
-#  user_id         :integer(4)
+#  id              :integer          not null, primary key
+#  user_id         :integer
 #  company_name    :string(255)
-#  is_subscriber   :boolean(1)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
+#  is_subscriber   :boolean
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #  newsletter_tags :string(255)
+#  location_id     :integer
 #
 
 module GoldencobraNewsletter
   class NewsletterRegistration < ActiveRecord::Base
     LiquidParser = {}
     belongs_to :user, :class_name => User
+    belongs_to :location, class_name: Goldencobra::Location
     validates_presence_of :company_name
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
     liquid_methods :newsletter_tags
-    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id
+    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id, :location_id, :location_attributes
+    accepts_nested_attributes_for :location
 
     def full_user_name
       [self.user.firstname, self.user.lastname].join(" ")

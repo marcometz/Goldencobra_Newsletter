@@ -88,23 +88,33 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       f.input :newsletter_tags
     end
     f.inputs "User" do
-    f.fields_for :user_attributes, f.object.user do |u|
-      u.inputs "" do
-        u.input :gender, as: :select, include_blank: false, collection: [["Herr", true],["Frau", false]]
-        u.input :title
-        u.input :firstname
-        u.input :lastname
-        u.input :email
-        u.input :function
-        u.input :phone
-        u.input :fax
-        u.input :facebook
-        u.input :twitter
-        u.input :linkedin
-        u.input :xing
-        u.input :googleplus
+      f.fields_for :user_attributes, f.object.user do |u|
+        u.inputs "" do
+          u.input :gender, as: :select, include_blank: false, collection: [["Herr", true],["Frau", false]]
+          u.input :title
+          u.input :firstname
+          u.input :lastname
+          u.input :email
+          u.input :function
+          u.input :phone
+          u.input :fax
+          u.input :facebook
+          u.input :twitter
+          u.input :linkedin
+          u.input :xing
+          u.input :googleplus
+        end
       end
     end
+    f.inputs "Adresse" do
+      f.fields_for :location_attributes, f.object.location do |l|
+        l.inputs "" do
+          l.input :street
+          l.input :zip
+          l.input :city
+          l.input :country, as: :string
+        end
+      end
     end
     f.actions
   end
