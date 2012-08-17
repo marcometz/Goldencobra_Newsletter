@@ -11,7 +11,7 @@ module GoldencobraNewsletter
     #
     #   en.event_registration_mailer.registration.subject
     #
-        
+
     def email_with_template(newsletter, email_template)
       do_not_deliver! unless newsletter.is_subscriber
       GoldencobraNewsletter::NewsletterRegistration::LiquidParser["user"] = newsletter.user
@@ -55,6 +55,17 @@ module GoldencobraNewsletter
       end
     end
 
+    def send_campaign_email(recipients, campaign)
+      #@user = user
+      @campaign = campaign
+      recipients.each do |user|
+        @user = user
+        mail(to: @user.email, subject: @campaign.subject) do |format|
+          format.html { render inline: @campaign.layout }
+          format.text { render text: "Mein Text. Yay." }
+        end
+      end
+    end
 
   end
 end
