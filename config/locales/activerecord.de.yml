@@ -10,6 +10,9 @@ de:
             goldencobra_newsletter/newsletter_campaign:
                 one: "Newsletter Kampagne"
                 other: "Newsletter Kampagnen"
+            newsletter_campaign:
+                one: "Newsletter Kampagne"
+                other: "Newsletter Kampagnen"
             newsletter campaign:
                 one: "Newsletter Kampagne"
                 other: "Newsletter Kampagnen"

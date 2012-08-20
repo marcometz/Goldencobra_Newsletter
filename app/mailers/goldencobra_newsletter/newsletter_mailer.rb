@@ -56,14 +56,17 @@ module GoldencobraNewsletter
     end
 
     def send_campaign_email(recipients, campaign)
-      #@user = user
       @campaign = campaign
-      recipients.each do |user|
-        @user = user
-        mail(to: @user.email, subject: @campaign.subject) do |format|
-          format.html { render inline: @campaign.layout }
-          format.text { render text: "Mein Text. Yay." }
+      if recipients.count > 0
+        recipients.each do |user|
+          @user = user
+          mail(to: @user.email, subject: @campaign.subject) do |format|
+            format.html { render inline: @campaign.layout }
+            format.text { render text: @campaign.plaintext }
+          end
         end
+      else
+        do_not_deliver!
       end
     end
 
