@@ -30,7 +30,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     default_actions
   end
 
-  actions :all, :except => [:new]
+  #actions :all, :except => [:new]
 
   show :title => :full_user_name do
     attributes_table do
