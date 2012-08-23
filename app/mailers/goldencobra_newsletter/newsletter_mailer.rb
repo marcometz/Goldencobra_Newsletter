@@ -59,7 +59,7 @@ module GoldencobraNewsletter
       @campaign = campaign
       @user = user
       mail(to: @user.email, subject: @campaign.subject) do |format|
-        format.text { render text: @campaign.plaintext }
+        format.text { render inline: @campaign.plaintext }
         format.html { render inline: @campaign.layout }
       end
       user.newsletter_registration.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: #{@campaign.title}", :description => "email: #{user.email}")
