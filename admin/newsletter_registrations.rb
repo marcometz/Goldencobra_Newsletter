@@ -143,17 +143,19 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     end
 
     def create
-      password = GoldencobraNewsletter::NewsletterRegistration.generate_random_dummy_password
-      params[:newsletter_registration][:user_attributes][:password] = password
-      params[:newsletter_registration][:user_attributes][:password_confirmation] = password
-      u = User.create(params[:newsletter_registration][:user_attributes])
-      if u
-        l = Goldencobra::Location.create(params[:newsletter_registration][:location_attributes])
-        GoldencobraNewsletter::NewsletterRegistration.create(company_name: params[:newsletter_registration][:company_name],
-                                                             is_subscriber: params[:newsletter_registration][:is_subscriber],
-                                                             newsletter_tags: params[:newsletter_registration][:newsletter_tags],
-                                                             user_id: u.id,
-                                                             location_id: l.id)
+      @user = User.find_by_email(params[:newsletter_registration][:user_attributes][:email]) if params[:newsletter_registration][:user_attributes][:email].present?
+      unless @user
+        password = GoldencobraNewsletter::NewsletterRegistration.generate_random_dummy_password
+        params[:newsletter_registration][:user_attributes][:password] = password
+        params[:newsletter_registration][:user_attributes][:password_confirmation] = password
+        @user = User.create(params[:newsletter_registration][:user_attributes])
+      end
+      l = Goldencobra::Location.create(params[:newsletter_registration][:location_attributes])
+      GoldencobraNewsletter::NewsletterRegistration.create(company_name: params[:newsletter_registration][:company_name],
+                                                           is_subscriber: params[:newsletter_registration][:is_subscriber],
+                                                           newsletter_tags: params[:newsletter_registration][:newsletter_tags],
+                                                           user_id: @user.id,
+                                                           location_id: l.id)
       end
       redirect_to action: :index
     end
