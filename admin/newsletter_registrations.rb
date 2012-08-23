@@ -62,23 +62,23 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     end #end panel vita
   end
 
-  #if ActiveRecord::Base.connection.table_exists?("goldencobra_email_templates_email_templates")
-    #GoldencobraEmailTemplates::EmailTemplate.all.each do |emailtemplate|
-      #batch_action "E-Mail senden: #{emailtemplate.title}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
-        #GoldencobraNewsletter::NewsletterRegistration.find(selection).each do |newsreg|
-          #if newsreg.is_subscriber
-            #if newsreg.user && newsreg.user.email.present?
-              #GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
-              #newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
-            #else
-              #newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivery failed: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
-            #end
-          #end
-        #end
-        #redirect_to :action => :index, :notice => "Newsletter wurden versendet"
-      #end
-    #end
-  #end
+  if ActiveRecord::Base.connection.table_exists?("goldencobra_email_templates_email_templates")
+    GoldencobraEmailTemplates::EmailTemplate.all.each do |emailtemplate|
+      batch_action "E-Mail senden: #{emailtemplate.title}", :confirm => "#{emailtemplate.title}: sind Sie sicher?" do |selection|
+        GoldencobraNewsletter::NewsletterRegistration.find(selection).each do |newsreg|
+          if newsreg.is_subscriber
+            if newsreg.user && newsreg.user.email.present?
+              GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
+              newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
+            else
+              newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivery failed: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
+            end
+          end
+        end
+        redirect_to :action => :index, :notice => "Newsletter wurden versendet"
+      end
+    end
+  end
 
  form :html => { :enctype => "multipart/form-data" }  do |f|
     f.actions
