@@ -21,7 +21,7 @@ module GoldencobraNewsletter
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
     liquid_methods :newsletter_tags
     attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id, :location_id, :location_attributes
-    accepts_nested_attributes_for :location
+    accepts_nested_attributes_for :location, :user
 
     def full_user_name
       [self.user.firstname, self.user.lastname].join(" ")

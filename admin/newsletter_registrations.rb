@@ -126,6 +126,9 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       if @user
         @user.update_attributes(params[:newsletter_registration][:user_attributes])
       else
+        password = GoldencobraNewsletter::NewsletterRegistration.generate_random_dummy_password
+        params[:newsletter_registration][:user_attributes][:password] = password
+        params[:newsletter_registration][:user_attributes][:password_confirmation] = password
         User.create(params[:newsletter_registration][:user_attributes])
       end
       if params[:newsletter_registration][:user_attributes].present?
@@ -135,6 +138,22 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
         flash[:notice] = "Update successful"
       else
         flash[:error] = "Update not successful"
+      end
+      redirect_to action: :index
+    end
+
+    def create
+      password = GoldencobraNewsletter::NewsletterRegistration.generate_random_dummy_password
+      params[:newsletter_registration][:user_attributes][:password] = password
+      params[:newsletter_registration][:user_attributes][:password_confirmation] = password
+      u = User.create(params[:newsletter_registration][:user_attributes])
+      if u
+        l = Goldencobra::Location.create(params[:newsletter_registration][:location_attributes])
+        GoldencobraNewsletter::NewsletterRegistration.create(company_name: params[:newsletter_registration][:company_name],
+                                                             is_subscriber: params[:newsletter_registration][:is_subscriber],
+                                                             newsletter_tags: params[:newsletter_registration][:newsletter_tags],
+                                                             user_id: u.id,
+                                                             location_id: l.id)
       end
       redirect_to action: :index
     end
