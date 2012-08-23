@@ -154,7 +154,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       GoldencobraNewsletter::NewsletterRegistration.create(company_name: params[:newsletter_registration][:company_name],
                                                            is_subscriber: params[:newsletter_registration][:is_subscriber],
                                                            newsletter_tags: params[:newsletter_registration][:newsletter_tags],
-                                                           user_id: @use.id,
+                                                           user_id: @user.id,
                                                            location_id: l.id)
       redirect_to action: :index
     end
