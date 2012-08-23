@@ -52,14 +52,15 @@ module GoldencobraNewsletter
     def self.render_formular(tag_name)
     end
 
-    def unsubscribe!(email, newsletter_tag)
+    def unsubscribe!(email)#, newsletter_tag)
       user = User.find_by_email(email)
       newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
-      tags = newsreg.newsletter_tags.split(",")
-      tags.delete(newsletter_tag)
-      newsreg.update_attributes(newsletter_tags: tags.compact.join(","))
-      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
-      GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(user, @template).deliver
+      # tags = newsreg.newsletter_tags.split(",")
+      # tags.delete(newsletter_tag)
+      # newsreg.update_attributes(newsletter_tags: tags.compact.join(","))
+      newsreg.update_attributes(newsletter_tags: nil)
+      # @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
+      GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(user).deliver#, @template).deliver
     end
 
     def subscribe!(email, newsletter_tag)

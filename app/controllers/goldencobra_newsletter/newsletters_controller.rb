@@ -64,8 +64,8 @@ module GoldencobraNewsletter
       @article = Goldencobra::Article.find_by_url_name("newsletter-site")
       initialize_article
 
-      if newsletter_registration && @user && newsletter_registration.newsletter_tags.include?(params[:tag])
-        newsletter_registration.unsubscribe!(@user.email, params[:tag])
+      if newsletter_registration && @user# && newsletter_registration.newsletter_tags.include?(params[:tag])
+        newsletter_registration.unsubscribe!(@user.email)#, params[:tag])
         render 'unsubscribe', layout: "application"
       else
         render 'no_registration_found', layout: "application"
@@ -93,7 +93,7 @@ module GoldencobraNewsletter
         redirect_to '/goldencobra/articles#show'
       end
     end
-    
+
     def initialize_article
       Goldencobra::Article::LiquidParser["current_article"] = @article
       set_meta_tags :site => Goldencobra::Setting.for_key("goldencobra.page.default_title_tag"),

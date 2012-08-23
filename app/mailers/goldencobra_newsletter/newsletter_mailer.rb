@@ -1,10 +1,10 @@
 module GoldencobraNewsletter
   class NewsletterMailer < ActionMailer::Base
 
-    default from: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.from") 
-    default subject: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject") 
+    default from: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.from")
+    default subject: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject")
     default :content_type => "text/html"
-    default :reply_to => Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.reply_to") 
+    default :reply_to => Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.reply_to")
 
     # Subject can be set in your I18n file at config/locales/en.yml
     # with the following lookup:
@@ -16,7 +16,7 @@ module GoldencobraNewsletter
       do_not_deliver! unless newsletter.is_subscriber
       GoldencobraNewsletter::NewsletterRegistration::LiquidParser["user"] = newsletter.user
       @email_template = email_template
-      subject = @email_template.subject.present? ? @email_template.subject : Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject") 
+      subject = @email_template.subject.present? ? @email_template.subject : Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject")
       @user = newsletter.user
       if @user && @user.present? && newsletter.newsletter_tags.include?(@email_template.template_tag)
         mail to: @user.email, bcc: "#{@email_template.bcc}", :css => "/goldencobra_events/email", :subject => subject
@@ -25,10 +25,10 @@ module GoldencobraNewsletter
       end
     end
 
-    def confirm_cancel_subscription(user, email_template)
+    def confirm_cancel_subscription(user)#, email_template)
       @user = user
-      @template = email_template
-      if @user && @template
+      # @template = email_template
+      if @user #&& @template
         mail to: @user.email, subject: t(:subscription_canceled, scope: [:email, :subject]), :css => "/goldencobra_events/email"
       else
         do_not_deliver!
