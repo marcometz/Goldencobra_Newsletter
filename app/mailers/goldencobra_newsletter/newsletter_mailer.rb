@@ -55,20 +55,14 @@ module GoldencobraNewsletter
       end
     end
 
-    def send_campaign_email(recipients, campaign)
+    def send_campaign_email(user, campaign)
       @campaign = campaign
-      if recipients.count > 0
-        recipients.each do |user|
-          @user = user
-          mail(to: @user.email, subject: @campaign.subject) do |format|
-            format.html { render inline: @campaign.layout }
-            #format.text { render text: @campaign.plaintext }
-          end
-          user.newsletter_registration.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: #{@campaign.title}", :description => "email: #{user.email}")
-        end
-      else
-        do_not_deliver!
+      @user = user
+      mail(to: @user.email, subject: @campaign.subject) do |format|
+        format.text { render text: @campaign.plaintext }
+        format.html { render inline: @campaign.layout }
       end
+      user.newsletter_registration.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: #{@campaign.title}", :description => "email: #{user.email}")
     end
 
   end

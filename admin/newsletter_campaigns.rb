@@ -33,7 +33,13 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterCampaign, as: "Newsletter 
         end
         recipients = recipients.flatten.uniq
       end
-      GoldencobraNewsletter::NewsletterMailer.send_campaign_email(recipients, campaign).deliver
+      if recipients.count > 0
+        recipients.each do |user|
+          if user.email.present?
+            GoldencobraNewsletter::NewsletterMailer.send_campaign_email(user, campaign).deliver
+          end
+        end
+      end
     end
     redirect_to action: :index, notice: "Kampagne wurden durchgefuehrt"
   end
