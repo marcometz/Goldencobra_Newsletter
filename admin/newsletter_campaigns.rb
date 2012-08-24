@@ -29,9 +29,9 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterCampaign, as: "Newsletter 
       recipients = []
       if campaign.selected_tags.present?
         campaign.selected_tags.split(",").each do |tag|
-          recipients << GoldencobraNewsletter::NewsletterRegistration.where('newsletter_tags LIKE ?', "%#{tag}%").all.map{|a| a.user}
+          recipients << GoldencobraNewsletter::NewsletterRegistration.where('newsletter_tags LIKE ?', "%#{tag}%").includes(:user).all.map{|a| a.user}
         end
-        recipients = recipients.flatten.uniq
+        recipients = recipients.flatten.uniq.compact
       end
       if recipients.count > 0
         recipients.each do |user|
