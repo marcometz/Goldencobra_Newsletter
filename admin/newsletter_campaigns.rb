@@ -35,7 +35,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterCampaign, as: "Newsletter 
       end
       if recipients.count > 0
         recipients.each do |user|
-          if user.email.present?
+          if user.present? && user.email.present?
             GoldencobraNewsletter::NewsletterMailer.send_campaign_email(user, campaign).deliver
           end
         end
