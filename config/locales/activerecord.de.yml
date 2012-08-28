@@ -26,3 +26,4 @@ de:
             goldencobra_newsletter/newsletter_registration:
                 company_name: "Firma"
                 is_subscriber: "Angemeldet"
+                incl_address: "Adresse vorhanden"

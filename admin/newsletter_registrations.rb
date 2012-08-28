@@ -9,10 +9,12 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   filter :newsletter_tags
   filter :firstname, :as => :string
   filter :lastname, :as => :string
+  filter :location_present, :as => :select, :collection => ["Postadresse vorhanden (Strasse & PLZ)"]
 
   scope "Alle", :scoped, :default => true
   scope :is_subscriber
   scope :is_no_subscriber
+  scope :location_present
 
   index do
     selectable_column
@@ -25,7 +27,10 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     column :company_name
     column :newsletter_tags
     column :is_subscriber do |nr|
-      nr.is_subscriber
+      nr.is_subscriber ? "ja" : "nein"
+    end
+    column :incl_address do |nr|
+      nr.location_present ? "ja" : "nein"
     end
     default_actions
   end
@@ -179,6 +184,12 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     column("Twitter")   {|nlreg| nlreg.user.twitter if nlreg.user.present? }
     column("LinkedIn")  {|nlreg| nlreg.user.linkedin if nlreg.user.present? }
     column("Xing")      {|nlreg| nlreg.user.xing if nlreg.user.present? }
-    column("Google+")   {|nlreg| nlreg.user.googleplus if nlreg.user.present? }
+    column("Strasse")   {|nlreg| nlreg.location.street if nlreg.location.present? }
+    column("PLZ")       {|nlreg| nlreg.location.zip if nlreg.location.present? }
+    column("Region")    {|nlreg| nlreg.location.region if nlreg.location.present? }
+    column("Ort")       {|nlreg| nlreg.location.city if nlreg.location.present? }
+    column("Land")      {|nlreg| nlreg.location.country if nlreg.location.present? }
+    column("latitude")  {|nlreg| nlreg.location.lat if nlreg.location.present? }
+    column("longitude") {|nlreg| nlreg.location.lng if nlreg.location.present? }
   end
 end

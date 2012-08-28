@@ -14,5 +14,5 @@ en:
           goldencobra_newsletter/newsletter_registration:
               company_name: "Company"
               is_subscriber: "subscriber"
-      
-     
+              incl_address: "Address present"
+

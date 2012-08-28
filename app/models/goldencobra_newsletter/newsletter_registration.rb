@@ -49,8 +49,15 @@ module GoldencobraNewsletter
     scope :lastname_contains, lambda { |text| includes(:user).where('users.lastname LIKE ?', text) }
     search_methods :lastname_contains
 
+    scope :location_present, joins(:location).where("goldencobra_locations.street <> '' AND goldencobra_locations.zip <> ''")
+    scope :location_present_eq, lambda { |text| joins(:location).where("goldencobra_locations.street <> '' AND goldencobra_locations.zip <> ''") }
+    search_methods :location_present_eq
 
     def self.render_formular(tag_name)
+    end
+
+    def location_present
+      self.location.present? && self.location.street.present? && self.location.zip.present?
     end
 
     def unsubscribe!(email)#, newsletter_tag)
