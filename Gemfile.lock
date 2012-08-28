@@ -77,7 +77,7 @@ GIT
 PATH
   remote: .
   specs:
-    goldencobra_newsletter (0.0.1)
+    goldencobra_newsletter (0.0.2)
       goldencobra
       rails (~> 3.2.2)
 

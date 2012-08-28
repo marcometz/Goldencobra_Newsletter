@@ -49,12 +49,8 @@ module GoldencobraNewsletter
     scope :lastname_contains, lambda { |text| includes(:user).where('users.lastname LIKE ?', text) }
     search_methods :lastname_contains
 
+
     def self.render_formular(tag_name)
-    end
-
-
-    def user
-      self.user || Goldencobra::User.new
     end
 
     def unsubscribe!(email)#, newsletter_tag)
