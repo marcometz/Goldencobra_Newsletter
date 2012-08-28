@@ -167,18 +167,18 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     column :newsletter_tags
     column :created_at
     column :updated_at
-    column("Geschlecht"){|nlreg| nlreg.user && nlreg.user.gender ? "Herr" : "Frau"}
-    column("Titel")     {|nlreg| nlreg.user.title if nlreg.user }
-    column("Vorname")   {|nlreg| nlreg.user.firstname if nlreg.user}
-    column("Nachname")  {|nlreg| nlreg.user.lastname if nlreg.user}
-    column("E-Mail")    {|nlreg| nlreg.user.email if nlreg.user}
-    column("Funktion")  {|nlreg| nlreg.user.function if nlreg.user }
-    column("Telefon")   {|nlreg| nlreg.user.phone if nlreg.user }
-    column("Fax")       {|nlreg| nlreg.user.fax if nlreg.user }
-    column("Facebook")  {|nlreg| nlreg.user.facebook if nlreg.user }
-    column("Twitter")   {|nlreg| nlreg.user.twitter if nlreg.user }
-    column("LinkedIn")  {|nlreg| nlreg.user.linkedin if nlreg.user }
-    column("Xing")      {|nlreg| nlreg.user.xing if nlreg.user }
-    column("Google+")   {|nlreg| nlreg.user.googleplus if nlreg.user }
+    column("Geschlecht"){|nlreg| nlreg.user.present? && nlreg.user.gender ? "Herr" : "Frau"}
+    column("Titel")     {|nlreg| nlreg.user.title if nlreg.user.present? }
+    column("Vorname")   {|nlreg| nlreg.user.firstname if nlreg.user.present?}
+    column("Nachname")  {|nlreg| nlreg.user.lastname if nlreg.user.present?}
+    column("E-Mail")    {|nlreg| nlreg.user.email if nlreg.user.present?}
+    column("Funktion")  {|nlreg| nlreg.user.function if nlreg.user.present? }
+    column("Telefon")   {|nlreg| nlreg.user.phone if nlreg.user.present? }
+    column("Fax")       {|nlreg| nlreg.user.fax if nlreg.user.present? }
+    column("Facebook")  {|nlreg| nlreg.user.facebook if nlreg.user.present? }
+    column("Twitter")   {|nlreg| nlreg.user.twitter if nlreg.user.present? }
+    column("LinkedIn")  {|nlreg| nlreg.user.linkedin if nlreg.user.present? }
+    column("Xing")      {|nlreg| nlreg.user.xing if nlreg.user.present? }
+    column("Google+")   {|nlreg| nlreg.user.googleplus if nlreg.user.present? }
   end
 end
