@@ -52,6 +52,10 @@ module GoldencobraNewsletter
     def self.render_formular(tag_name)
     end
 
+    def user
+      self.user || Goldencobra::User.new
+    end
+
     def unsubscribe!(email)#, newsletter_tag)
       user = User.find_by_email(email)
       newsreg = GoldencobraNewsletter::NewsletterRegistration.find_by_user_id(user.id)
