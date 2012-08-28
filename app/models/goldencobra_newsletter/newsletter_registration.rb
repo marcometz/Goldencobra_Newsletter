@@ -52,6 +52,7 @@ module GoldencobraNewsletter
     def self.render_formular(tag_name)
     end
 
+
     def user
       self.user || Goldencobra::User.new
     end
