@@ -10,9 +10,6 @@ de:
             goldencobra_newsletter/newsletter_campaign:
                 one: "Newsletter Kampagne"
                 other: "Newsletter Kampagnen"
-            newsletter_campaign:
-                one: "Newsletter Kampagne"
-                other: "Newsletter Kampagnen"
             newsletter campaign:
                 one: "Newsletter Kampagne"
                 other: "Newsletter Kampagnen"
@@ -22,6 +19,9 @@ de:
             company:
                 one: "Unternehmen"
                 other: "Unternehmen"
+            master data:
+                one: "Stammdaten"
+                other: "Stammdaten"
         attributes:
             goldencobra_newsletter/newsletter_registration:
                 company_name: "Firma"
