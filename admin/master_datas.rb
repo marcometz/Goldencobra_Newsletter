@@ -2,6 +2,13 @@ ActiveAdmin.register User, :as => "Master Data" do
   controller.authorize_resource :class => User
 
   scope :event_registration_present
+  scope :event_registration_not_present
+  scope :event_and_newsletter_registration_present
+
+  filter :firstname
+  filter :lastname
+  filter :email
+  filter :company_name
 
   index do
     selectable_column
