@@ -8,7 +8,7 @@ ActiveAdmin.register User, :as => "Master Data" do
   filter :firstname
   filter :lastname
   filter :email
-  filter :company_name
+  filter :company_name, as: :string
 
   index do
     selectable_column

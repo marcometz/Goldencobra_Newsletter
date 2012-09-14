@@ -14,12 +14,8 @@ Rails.application.config.to_prepare do
       search_methods :event_registration_present_eq
     end
 
-    scope :company_name_eq, lambda { |search_term| joins(:registration_users).where("goldencobra_newsletter_newsletter_registrations.company_name LIKE '%#{search_term}%'") }
-    search_methods :company_name_eq
-    # scope :location_present, joins(:location).where("goldencobra_locations.street <> '' AND goldencobra_locations.zip <> ''")
-    # scope :location_present_eq, lambda { |text| joins(:location).where("goldencobra_locations.street <> '' AND goldencobra_locations.zip <> ''") }
-    # search_methods :location_present_eq
-
+    scope :company_name_contains, lambda { |search_term| joins(:newsletter_registration).where("goldencobra_newsletter_newsletter_registrations.company_name LIKE '%#{search_term}%'") }
+    search_methods :company_name_contains
   end
 end
 
