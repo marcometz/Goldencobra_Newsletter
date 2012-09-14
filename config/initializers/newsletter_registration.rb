@@ -5,8 +5,8 @@ Rails.application.config.to_prepare do
     has_one :newsletter_registration, :class_name => GoldencobraNewsletter::NewsletterRegistration
 
     if ActiveRecord::Base.connection.table_exists?("goldencobra_events_registration_users")
-      scope :event_registration_present, joins(:registration_user).where("goldencobra_events_registration_users.user_id = ?", self.id)
-      scope :event_registration_present_eq, lambda{ |text| joins(:registration_user).where("goldencobra_events_registration_users.user_id = ?", self.id) }
+      # scope :event_registration_present, joins(:registration_user).where("goldencobra_events_registration_users.user_id = ?", self.id)
+      scope :event_registration_present_eq, lambda{ |text| joins(:registration_user).where("goldencobra_events_registration_users.user_id = #{text}") }
       search_methods :event_registration_present_eq
     end
 
