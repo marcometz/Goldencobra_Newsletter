@@ -1,6 +1,8 @@
 ActiveAdmin.register User, :as => "Master Data" do
   controller.authorize_resource :class => User
 
+  scope :event_registration_present
+
   index do
     selectable_column
     column :firstname, sortable: true
