@@ -87,11 +87,6 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
 
  form :html => { :enctype => "multipart/form-data" }  do |f|
     f.actions
-    f.inputs "Allgemein", class: "foldable inputs" do
-      f.input :company_name
-      f.input :is_subscriber
-      f.input :newsletter_tags
-    end
     f.inputs "User" do
       f.fields_for :user_attributes, f.object.user do |u|
         u.inputs "" do
@@ -120,6 +115,12 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
           l.input :country, as: :string
         end
       end
+    end
+    f.inputs "", class: "foldable inputs" do
+      f.input :company_name
+      f.input :is_subscriber
+      f.input :newsletter_tags, as: :select, collection: GoldencobraNewsletter::NewsletterRegistration.all.map{|nlr| nlr.newsletter_tags.split(",").map{|s|s.strip} if nlr.newsletter_tags.present?}.flatten.uniq!.compact,
+          input_html: { class: 'chzn-select', style: 'width: 70%;', 'data-placeholder' => 'Newsletter Tags', multiple: true }
     end
     f.actions
   end

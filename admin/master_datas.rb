@@ -1,9 +1,11 @@
 ActiveAdmin.register User, :as => "Master Data" do
   controller.authorize_resource :class => User
 
-  scope :event_registration_present
-  scope :event_registration_not_present
-  scope :event_and_newsletter_registration_present
+  if ActiveRecord::Base.connection.table_exists?("goldencobra_events_registration_users")
+    scope :event_registration_present
+    scope :event_registration_not_present
+    scope :event_and_newsletter_registration_present
+  end
 
   filter :firstname
   filter :lastname
@@ -49,25 +51,6 @@ ActiveAdmin.register User, :as => "Master Data" do
       f.input :xing
       f.input :googleplus
     end
-    # f.inputs "Newsletter" do
-    #   f.fields_for :user_attributes, f.object.user do |u|
-    #     u.inputs "" do
-    #       f.input :company_name
-    #       f.input :is_subscriber
-    #       f.input :newsletter_tags
-    #     end
-    #   end
-    # end
-    # f.inputs "Adresse" do
-    #   f.fields_for :location_attributes, f.object.location do |l|
-    #     l.inputs "" do
-    #       l.input :street
-    #       l.input :zip
-    #       l.input :city
-    #       l.input :country, as: :string
-    #     end
-    #   end
-    # end
     f.actions
   end
 end
