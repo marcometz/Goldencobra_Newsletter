@@ -122,6 +122,16 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
       f.input :newsletter_tags, as: :select, collection: GoldencobraNewsletter::NewsletterRegistration.all.map{|nlr| nlr.newsletter_tags.split(",").map{|s|s.strip} if nlr.newsletter_tags.present?}.flatten.uniq!.compact,
           input_html: { class: 'chzn-select', style: 'width: 70%;', 'data-placeholder' => 'Newsletter Tags', multiple: true }
     end
+    f.inputs "Historie" do
+      f.has_many :vita_steps do |step|
+        if step.object.new_record?
+          step.input :description, as: :string, label: "Eintrag"
+          step.input :title, label: "Bearbeiter", hint: "Tragen Sie hier Ihren Namen ein, damit die Aktion zugeordnet werden kann"
+        else
+          render :partial => "/goldencobra/admin/users/vita_steps", :locals => {:step => step}
+        end
+      end
+    end
     f.actions
   end
 

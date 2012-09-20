@@ -51,6 +51,16 @@ ActiveAdmin.register User, :as => "Master Data" do
       f.input :xing
       f.input :googleplus
     end
+    f.inputs "Historie" do
+      f.has_many :vita_steps do |step|
+        if step.object.new_record?
+          step.input :description, as: :string, label: "Eintrag"
+          step.input :title, label: "Bearbeiter", hint: "Tragen Sie hier Ihren Namen ein, damit die Aktion zugeordnet werden kann"
+        else
+          render :partial => "/goldencobra/admin/users/vita_steps", :locals => {:step => step}
+        end
+      end
+    end
     f.actions
   end
 end
