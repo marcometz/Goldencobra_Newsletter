@@ -96,6 +96,8 @@ ActiveAdmin.register User, :as => "Master Data" do
 
         GoldencobraEvents::EmailBlacklist.create(email_address: newsletter_registration.user.email, status_code: "SPERRVERMERK")
         newsletter_registration.vita_steps << Goldencobra::Vita.create(title: "SPERRVERMERK", description: "E-Mail Adresse wurde gesperrt.")
+        u = User.find(params[:id])
+        u.vita_steps << Goldencobra::Vita.create(title: "SPERRVERMERK", description: "E-Mail Adresse wurde gesperrt.") if u
       end
     end
     redirect_to admin_master_data_path
