@@ -26,11 +26,11 @@ ActiveAdmin.register User, :as => "Master Data" do
       end
     end
     column "" do |user|
-      if GoldencobraNewsletter::NewsletterRegistration.where(user_id: user.id).any?
-        link_to "Bearbeiten", edit_admin_newsletter_registration_path(GoldencobraNewsletter::NewsletterRegistration.where(user_id: user.id).first)
-      else
+      # if GoldencobraNewsletter::NewsletterRegistration.where(user_id: user.id).any?
+        # link_to "Bearbeiten", edit_admin_newsletter_registration_path(GoldencobraNewsletter::NewsletterRegistration.where(user_id: user.id).first)
+      # else
         link_to "Bearbeiten", edit_admin_master_datum_path(user.id)
-      end
+      # end
     end
   end
 
