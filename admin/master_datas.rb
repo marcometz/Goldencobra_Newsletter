@@ -83,14 +83,14 @@ ActiveAdmin.register User, :as => "Master Data" do
   # Angemeldet (bei Newsletter) wird "nein",
   # alle Newsletter-tags löschen
   action_item only: :edit do
-    link_to I18n.t(:block_user, scope: [:activeadmin, :action_buttons]), "#"
+    link_to I18n.t(:block_user, scope: [:activeadmin, :action_buttons]), block_user_admin_master_datum_path
   end
 
   member_action :block_user, method: :get do
     newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.find(params[:id])
-    newsletter_registration.update_attributes(:subscribed: false, newsletter_tags: "")
+    newsletter_registration.update_attributes(subscribed: false, newsletter_tags: "")
     if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists") && Goldencobra::Setting.for_key('goldencobra_events.imap.use_blacklist') == "true"
       GoldencobraEvents::EmailBlacklist.create(email_address: newsletter_registration.user.email, status_code: "SPERRVERMERK")
-      newsletter_registration.vita_steps << Goldencobra::Vita.create(:title => "SPERRVERMERK", :description => "E-Mail Adresse wurde gesperrt.")
+      newsletter_registration.vita_steps << Goldencobra::Vita.create(title: "SPERRVERMERK", description: "E-Mail Adresse wurde gesperrt.")
     end
 end
