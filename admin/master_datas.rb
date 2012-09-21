@@ -98,5 +98,6 @@ ActiveAdmin.register User, :as => "Master Data" do
         newsletter_registration.vita_steps << Goldencobra::Vita.create(title: "SPERRVERMERK", description: "E-Mail Adresse wurde gesperrt.")
       end
     end
+    redirect_to admin_master_data_path
   end
 end
