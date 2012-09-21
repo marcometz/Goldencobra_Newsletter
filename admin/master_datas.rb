@@ -63,4 +63,23 @@ ActiveAdmin.register User, :as => "Master Data" do
     end
     f.actions
   end
+
+  # Neuer Action Button um EventAnmeldung aus Stammdatensatz heraus anzulegen
+  # Nur möglich, wenn GoldencobraEvents vorhanden ist
+  if defined? GoldencobraEvents
+    action_item :only => :edit do
+      # _article = @_assigns['article']
+      link_to(I18n.t(:create_event_registration_from_master_date, scope: [:active_admin, :action_buttons]), "#")#, :target => "_blank")
+    end
+
+    member_action :create_event_registration, :method => :post do
+      # article = Goldencobra::Article.find(params[:id])
+      # article.update_attributes(:widget_ids => params[:widget_ids])
+      # redirect_to :action => :edit, :notice => "Widgets added"
+      user = User.find(params[:id])
+      reg_user = GoldencobraEvents::RegistrationUser.create_from_master_data(user.id)
+      redirect_to edit_admin_applicant_path(reg_user.id)
+      # render nothing: true
+    end
+  end
 end

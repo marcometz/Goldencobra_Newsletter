@@ -1,0 +1,4 @@
+de:
+  activeadmin:
+    action_buttons:
+      create_event_registration_from_master_date: "EventAnmeldung für Nutzer anlegen"
