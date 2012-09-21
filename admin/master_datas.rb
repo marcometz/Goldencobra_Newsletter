@@ -71,7 +71,7 @@ ActiveAdmin.register User, :as => "Master Data" do
       link_to(I18n.t(:create_event_registration_from_master_date, scope: [:activeadmin, :action_buttons]), create_event_registration_admin_master_datum_path)
     end
 
-    member_action :create_event_registration, :method => :post do
+    member_action :create_event_registration, :method => :get do
       user = User.find(params[:id])
       reg_user = GoldencobraEvents::RegistrationUser.create_from_master_data(user.id)
       redirect_to edit_admin_applicant_path(reg_user.id)
