@@ -1,10 +1,16 @@
 module GoldencobraNewsletter
   class NewsletterMailer < ActionMailer::Base
 
-    default from: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.from")
-    default subject: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject")
+    if defined? GoldencobraEvents
+      default from: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.from")
+      default subject: Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject")
+      default :reply_to => Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.reply_to")
+    else
+      default from: 'foo@bar.baz'
+      default subject: 'foo'
+    end
+
     default :content_type => "text/html"
-    default :reply_to => Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.reply_to")
 
     # Subject can be set in your I18n file at config/locales/en.yml
     # with the following lookup:
@@ -14,15 +20,21 @@ module GoldencobraNewsletter
 
     def email_with_template(newsletter, email_template)
       do_not_deliver! unless newsletter.is_subscriber
-      if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists")
-        do_not_deliver! if GoldencobraEvents::EmailBlacklist.is_blacklisted?(newsletter.user.email) == true
-      end
+      do_not_deliver! if !!(defined? GoldencobraEvents) && GoldencobraEvents::EmailBlacklist.is_blacklisted?(newsletter.user.email) == true
       GoldencobraNewsletter::NewsletterRegistration::LiquidParser["user"] = newsletter.user
       @email_template = email_template
-      subject = @email_template.subject.present? ? @email_template.subject : Goldencobra::Setting.for_key("goldencobra_events.event.registration.mailer.subject")
+      if @email_template.subject.present?
+        subject = @email_template.subject
+      else
+        if !!(defined? GoldencobraEvents)
+          subject = Goldencobra::Setting.for_key('goldencobra_events.event.registration.mailer.subject')
+        else
+          subject = 'Foo'
+        end
+      end
       @user = newsletter.user
       if @user && @user.present? && newsletter.newsletter_tags.include?(@email_template.template_tag)
-        mail to: @user.email, bcc: "#{@email_template.bcc}", :css => "/goldencobra_events/email", :subject => subject
+        mail to: @user.email, bcc: "#{@email_template.bcc}", subject: subject
       else
         do_not_deliver!
       end
@@ -31,9 +43,7 @@ module GoldencobraNewsletter
     def confirm_cancel_subscription(user)#, email_template)
       @user = user
       # @template = email_template
-      if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists")
-        do_not_deliver! if GoldencobraEvents::EmailBlacklist.is_blacklisted?(user.email) == true
-      end
+      do_not_deliver! if !!(defined? GoldencobraEvents) && GoldencobraEvents::EmailBlacklist.is_blacklisted?(newsletter.user.email) == true
       if @user #&& @template
         mail to: @user.email, subject: t(:subscription_canceled, scope: [:email, :subject]), :css => "/goldencobra_events/email"
       else
@@ -44,9 +54,7 @@ module GoldencobraNewsletter
     def confirm_subscription(email, email_template_tag)
       @user = User.find_by_email(email)
       @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(email_template_tag)
-      if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists")
-        do_not_deliver! if GoldencobraEvents::EmailBlacklist.is_blacklisted?(email) == true
-      end
+      do_not_deliver! if !!(defined? GoldencobraEvents) && GoldencobraEvents::EmailBlacklist.is_blacklisted?(newsletter.user.email) == true
       if @user && @template
         mail to: @user.email, subject: t(:subscription_confirmed, scope: [:email, :subject]), :css => "/goldencobra_events/email"
       else
@@ -57,9 +65,7 @@ module GoldencobraNewsletter
     def double_opt_in(email, newsletter_tag)
       @user = User.find_by_email(email)
       @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
-      if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists")
-        do_not_deliver! if GoldencobraEvents::EmailBlacklist.is_blacklisted?(email) == true
-      end
+      do_not_deliver! if !!(defined? GoldencobraEvents) && GoldencobraEvents::EmailBlacklist.is_blacklisted?(newsletter.user.email) == true
       if @user && @template
         mail to: @user.email, subject: t(:double_opt_in, scope: [:email, :subject]), :css => "/goldencobra_events/email"
       else
@@ -70,9 +76,7 @@ module GoldencobraNewsletter
     def send_campaign_email(user, campaign)
       @campaign = campaign
       @user = user
-      if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists")
-        do_not_deliver! if GoldencobraEvents::EmailBlacklist.is_blacklisted?(user.email) == true
-      end
+      do_not_deliver! if !!(defined? GoldencobraEvents) && GoldencobraEvents::EmailBlacklist.is_blacklisted?(newsletter.user.email) == true
       mail(to: @user.email, subject: @campaign.subject) do |format|
         format.text { render inline: @campaign.plaintext }
         format.html { render inline: @campaign.layout }
