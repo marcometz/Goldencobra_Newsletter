@@ -9,6 +9,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   filter :newsletter_tags
   filter :firstname, :as => :string
   filter :lastname, :as => :string
+  filter :email, as: :string
   filter :location_present, :as => :select, :collection => ["Postadresse vorhanden (Strasse & PLZ)"]
 
   scope "Alle", :scoped, :default => true

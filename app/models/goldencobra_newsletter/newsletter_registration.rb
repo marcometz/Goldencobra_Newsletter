@@ -55,6 +55,10 @@ module GoldencobraNewsletter
     scope :location_present_eq, lambda { |text| joins(:location).where("goldencobra_locations.street <> '' AND goldencobra_locations.zip <> ''") }
     search_methods :location_present_eq
 
+    scope :email_contains, lambda { |search_term| joins(:user).where("users.email LIKE '%#{search_term}%'") }
+    search_methods :email_contains
+
+
     def self.render_formular(tag_name)
     end
 
