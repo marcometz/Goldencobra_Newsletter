@@ -90,8 +90,7 @@ ActiveAdmin.register User, :as => "Master Data" do
     newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where(user_id: params[:id]).first
     if newsletter_registration
       newsletter_registration.update_attributes(is_subscriber: false, newsletter_tags: "")
-      if defined? GoldencobraEvents &&
-        ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists") &&
+      if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists") &&
         Goldencobra::Setting.for_key('goldencobra_events.imap.use_blacklist') == "true"
 
         GoldencobraEvents::EmailBlacklist.create(email_address: newsletter_registration.user.email, status_code: "SPERRVERMERK")
