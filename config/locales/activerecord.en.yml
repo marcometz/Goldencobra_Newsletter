@@ -7,15 +7,15 @@ en:
           goldencobra_newsletter/newsletter_registration:
               one: "newsletter registration"
               other: "newsletter registrations"
+          goldencobra_newsletter/newsletter_campaign:
+              one: "Newsletter campaign"
+              other: "Newsletter campaigns"
+          newsletter campaign:
+              one: "Newsletter campaign"
+              other: "Newsletter campaigns"
           goldencobra_newsletter/company:
               one: "Unternehmen"
               other: "Unternehmen"
-          goldencobra_newsletter/newsletter_campaign:
-                one: "Newsletter campaign"
-                other: "Newsletter campaigns
-            newsletter campaign:
-                one: "Newsletter campaign"
-                other: "Newsletter campaigns"
       attributes:
           goldencobra_newsletter/newsletter_registration:
               company_name: "Company"
