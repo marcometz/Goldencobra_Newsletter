@@ -98,5 +98,14 @@ module GoldencobraNewsletter
         GoldencobraNewsletter::NewsletterMailer.double_opt_in(email, newsletter_tag).deliver
       end
     end
+
+    def newsletter_tags_display=(wert)
+      self.newsletter_tags = wert.flatten.uniq.compact.delete_if{|a|a==""}.join(",")
+    end
+
+    def newsletter_tags_display
+      self.newsletter_tags.split(",") if self.newsletter_tags.present?
+    end
+
   end
 end
