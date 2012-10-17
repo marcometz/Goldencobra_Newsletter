@@ -20,7 +20,7 @@ module GoldencobraNewsletter
     validates_presence_of :company_name
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
     liquid_methods :newsletter_tags
-    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id, :location_id, :location_attributes, :vita_steps_attributes
+    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id, :location_id, :location_attributes, :vita_steps_attributes, :newsletter_tags_display
     accepts_nested_attributes_for :location, :user
     accepts_nested_attributes_for :vita_steps, allow_destroy: true, reject_if: lambda { |a| a[:description].blank? }
 
