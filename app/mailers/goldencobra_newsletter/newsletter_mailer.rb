@@ -76,7 +76,7 @@ module GoldencobraNewsletter
     def send_campaign_email(user, campaign)
       @campaign = campaign
       @user = user
-      do_not_deliver! if ActiveRecord::Base.connection.table_exists?("goldencobra_events_email_blacklists") && GoldencobraEvents::EmailBlacklist.is_blacklisted?(email) == true
+      do_not_deliver! if ActiveRecord::Base.connection.table_exists?("goldencobra_events_email_blacklists") && GoldencobraEvents::EmailBlacklist.is_blacklisted?(@user.email) == true
       mail(to: @user.email, subject: @campaign.subject) do |format|
         format.text { render inline: @campaign.plaintext }
         format.html { render inline: @campaign.layout }
