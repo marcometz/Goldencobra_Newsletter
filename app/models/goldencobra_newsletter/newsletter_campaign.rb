@@ -21,7 +21,7 @@ module GoldencobraNewsletter
     end
 
     def selected_tags_display
-      self.selected_tags.split(",") if self.selected_tags.present?
+      self.selected_tags.split(",").map{|tag| tag.strip} if self.selected_tags.present?
     end
   end
 end

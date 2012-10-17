@@ -1,29 +1,29 @@
 de:
-    activerecord:
-        models:
-            newsletter registration:
-                one: "Newsletter Anmeldung"
-                other: "Newsletter Anmeldungen"
-            goldencobra_newsletter/newsletter_registration:
-                one: "Newsletter Anmeldung"
-                other: "Newsletter Anmeldungen"
-            goldencobra_newsletter/newsletter_campaign:
-                one: "Newsletter Kampagne"
-                other: "Newsletter Kampagnen"
-            newsletter campaign:
-                one: "Newsletter Kampagne"
-                other: "Newsletter Kampagnen"
-            goldencobra_newsletter/company:
-                one: "Unternehmen"
-                other: "Unternehmen"
-            company:
-                one: "Unternehmen"
-                other: "Unternehmen"
-            master data:
-                one: "Stammdaten"
-                other: "Stammdaten"
-        attributes:
-            goldencobra_newsletter/newsletter_registration:
-                company_name: "Firma"
-                is_subscriber: "Angemeldet"
-                incl_address: "Adresse vorhanden"
+  activerecord:
+    models:
+      newsletter registration:
+        one: "Newsletter Anmeldung"
+        other: "Newsletter Anmeldungen"
+      goldencobra_newsletter/newsletter_registration:
+        one: "Newsletter Anmeldung"
+        other: "Newsletter Anmeldungen"
+      goldencobra_newsletter/newsletter_campaign:
+        one: "Newsletter Kampagne"
+        other: "Newsletter Kampagnen"
+      newsletter campaign:
+        one: "Newsletter Kampagne"
+        other: "Newsletter Kampagnen"
+      goldencobra_newsletter/company:
+        one: "Unternehmen"
+        other: "Unternehmen"
+      company:
+        one: "Unternehmen"
+        other: "Unternehmen"
+      master data:
+        one: "Stammdaten"
+        other: "Stammdaten"
+    attributes:
+      goldencobra_newsletter/newsletter_registration:
+        company_name: "Firma"
+        is_subscriber: "Angemeldet"
+        incl_address: "Adresse vorhanden"

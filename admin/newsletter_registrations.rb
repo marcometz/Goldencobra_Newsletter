@@ -122,7 +122,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
     f.inputs "", class: "foldable inputs" do
       f.input :company_name
       f.input :is_subscriber
-      f.input :newsletter_tags_display, as: :select, collection: GoldencobraNewsletter::NewsletterRegistration.all.map{|nlr| nlr.newsletter_tags.split(",").map{|s|s.strip} if nlr.newsletter_tags.present?}.flatten.uniq!.compact,
+      f.input :newsletter_tags_display, as: :select, collection: GoldencobraNewsletter::NewsletterRegistration.all.map{|nlr| nlr.newsletter_tags.split(",").map{|s|s.strip} if nlr.newsletter_tags.present?}.flatten.uniq.compact,
           input_html: { class: 'chzn-select', style: 'width: 70%;', 'data-placeholder' => 'Newsletter Tags', multiple: true }
     end
     f.inputs "Historie" do

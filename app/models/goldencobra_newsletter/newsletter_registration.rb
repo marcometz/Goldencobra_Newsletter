@@ -104,7 +104,7 @@ module GoldencobraNewsletter
     end
 
     def newsletter_tags_display
-      self.newsletter_tags.split(",") if self.newsletter_tags.present?
+      self.newsletter_tags.split(",").map{|tag| tag.strip} if self.newsletter_tags.present?
     end
 
   end
