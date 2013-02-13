@@ -4,11 +4,11 @@ gemspec
 
 # jquery-rails is used by the dummy application
 gem 'activeadmin', :git => "git://github.com/ikusei/active_admin.git", :require => "activeadmin"
-gem 'goldencobra', :git => "git://github.com/ikusei/Goldencobra.git"
+gem 'goldencobra', :git => "ssh://git@git.ikusei.de:7999/GC/basis-modul.git"
 gem 'goldencobra_email_templates', :git => "git://github.com/ikusei/goldencobra_email_templates.git"
 gem 'compass-rails'
 gem 'coffee-rails'
-
+gem 'capistrano', '2.14.1'
 gem "rspec-rails", :group => [:test, :development] # rspec in dev so the rake tasks run properly
 
 group :development do
@@ -24,7 +24,7 @@ group :test do
   gem 'rspec'
   gem 'mysql2'
   gem 'cucumber'
-  gem 'cucumber-rails', '~> 1.3.0' 
+  gem 'cucumber-rails'
   gem "factory_girl_rails"
   gem 'database_cleaner'
   gem 'capybara'
