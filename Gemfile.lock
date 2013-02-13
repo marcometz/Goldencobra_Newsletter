@@ -23,14 +23,6 @@ GIT
       sass (>= 3.1.0)
 
 GIT
-  remote: git://github.com/ikusei/goldencobra_email_templates.git
-  revision: 5a4b9366115205e5f1d721ac981fbfa5f01599ec
-  specs:
-    goldencobra_email_templates (0.0.1)
-      goldencobra
-      rails (~> 3.2.2)
-
-GIT
   remote: git://github.com/ttilley/rb-fsevent.git
   revision: f36a8cd01b49a6ce2a26d9e1083b5f6e6722c470
   branch: pre-compiled-gem-one-off
@@ -90,6 +82,14 @@ GIT
       therubyracer (~> 0.10.2)
       uglifier
       whenever
+
+GIT
+  remote: ssh://git@git.ikusei.de:7999/GC/goldencobra-email-templates.git
+  revision: 46cf5d1799a9c49f0ebc96f8e3c40d67028c6783
+  specs:
+    goldencobra_email_templates (0.0.1)
+      goldencobra
+      rails (~> 3.2.2)
 
 GEM
   remote: http://rubygems.org/
