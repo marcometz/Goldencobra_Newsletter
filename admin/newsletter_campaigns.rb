@@ -1,3 +1,4 @@
+# Encoding: UTF-8
 ActiveAdmin.register GoldencobraNewsletter::NewsletterCampaign, as: "Newsletter Campaign" do
   menu parent: "Newsletter", label: I18n.t("goldencobra_newsletter/newsletter_campaign", scope: [:activerecord, :models], count: 3), if: proc{can?(:update, GoldencobraNewsletter::NewsletterCampaign)}
 
@@ -41,6 +42,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterCampaign, as: "Newsletter 
         end
       end
     end
-    redirect_to action: :index, notice: "Kampagne wurden durchgefuehrt"
+    flash[:notice] = "Kampagne wurde durchgeführt"
+    redirect_to action: :index
   end
 end
