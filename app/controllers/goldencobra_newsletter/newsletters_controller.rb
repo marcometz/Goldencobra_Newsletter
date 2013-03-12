@@ -41,7 +41,6 @@ module GoldencobraNewsletter
 
         @user.newsletter_registration = newsletter_registration
         @success = @user.save
-
       end
       if @success
         newsletter_registration.send_double_opt_in(@user.email, params[:newsletter_tags])

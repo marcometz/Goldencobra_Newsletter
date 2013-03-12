@@ -1,8 +1,10 @@
 Rails.application.config.to_prepare do
   require "devise"
   User.class_eval do
+    attr_accessible :newsletter_registration_attributes
 
     has_one :newsletter_registration, :class_name => GoldencobraNewsletter::NewsletterRegistration
+    accepts_nested_attributes_for :newsletter_registration
 
     if ActiveRecord::Base.connection.table_exists?("goldencobra_events_registration_users")
       scope :event_registration_present, joins(:registration_users).where("goldencobra_events_registration_users.user_id IS NOT NULL").uniq

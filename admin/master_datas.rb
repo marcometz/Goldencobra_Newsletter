@@ -51,6 +51,18 @@ ActiveAdmin.register User, :as => "Master Data" do
       f.input :xing
       f.input :googleplus
     end
+    if f.object && f.object.newsletter_registration && f.object.newsletter_registration.location
+      f.inputs "Adresse" do
+        f.fields_for :location_attributes, f.object.newsletter_registration.location do |l|
+          l.inputs "" do
+            l.input :street
+            l.input :zip
+            l.input :city
+            l.input :country, as: :string
+          end
+        end
+      end
+    end
     f.inputs "Historie" do
       f.has_many :vita_steps do |step|
         if step.object.new_record?
@@ -101,4 +113,32 @@ ActiveAdmin.register User, :as => "Master Data" do
     end
     redirect_to admin_master_data_path
   end
+
+  csv do |md|
+    column :id
+    column :email
+    column :created_at
+    column :updated_at
+    column :gender
+    column :title
+    column :firstname
+    column :lastname
+    column :function
+    column :phone
+    column :fax
+    column :facebook
+    column :twitter
+    column :linkedin
+    column :xing
+    column :googleplus
+    column :newsletter
+    column("Anmeldungen"){|md| GoldencobraEvents::RegistrationUser.where(user_id: md.id).count}
+    column("Street"){ |md| md.location.street }
+    column("PLZ"){ |md| md.location.zip }
+    column("Stadt"){ |md| md.location.city }
+    column("Bezirk"){ |md| md.location.region }
+    column("Land"){ |md| md.location.country }
+  end
+
+
 end
