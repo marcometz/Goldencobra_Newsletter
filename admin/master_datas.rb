@@ -147,7 +147,7 @@ ActiveAdmin.register User, :as => "Master Data" do
     column :xing
     column :googleplus
     column :newsletter
-    column "Company"{|md| md.company_name}
+    column("Company"){|md| md.company_name }
     column("Anmeldungen"){|md| GoldencobraEvents::RegistrationUser.where(user_id: md.id).count}
     column("Street"){ |md| md.location.street }
     column("PLZ"){ |md| md.location.zip }
