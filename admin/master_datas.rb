@@ -53,12 +53,26 @@ ActiveAdmin.register User, :as => "Master Data" do
     end
     if f.object && f.object.newsletter_registration && f.object.newsletter_registration.location
       f.inputs "Adresse" do
-        f.fields_for :location_attributes, f.object.newsletter_registration.location do |l|
-          l.inputs "" do
-            l.input :street
-            l.input :zip
-            l.input :city
-            l.input :country, as: :string
+        f.fields_for :newsletter_registration_attributes, f.object.newsletter_registration do |nr|
+          nr.fields_for :location_attributes, f.object.newsletter_registration.location do |l|
+            l.inputs "" do
+              l.input :street
+              l.input :zip
+              l.input :city
+              l.input :country, as: :string
+            end
+          end
+        end
+      end
+    end
+    if f.object && f.object.newsletter_registration
+      f.inputs "Newsletterdaten", class: "foldable inputs" do
+        f.fields_for :newsletter_registration, f.object.newsletter_registration do |nr|
+          nr.inputs "" do
+            nr.input :company_name
+            nr.input :is_subscriber
+            nr.input :newsletter_tags_display, as: :select, collection: GoldencobraNewsletter::NewsletterRegistration.all.map{|nlr| nlr.newsletter_tags.split(",").map{|s|s.strip} if nlr.newsletter_tags.present?}.flatten.uniq.compact,
+                input_html: { class: 'chzn-select', style: 'width: 70%;', 'data-placeholder' => 'Newsletter Tags', multiple: true }
           end
         end
       end
@@ -117,6 +131,7 @@ ActiveAdmin.register User, :as => "Master Data" do
   csv do |md|
     column :id
     column :email
+
     column :created_at
     column :updated_at
     column :gender
@@ -132,6 +147,7 @@ ActiveAdmin.register User, :as => "Master Data" do
     column :xing
     column :googleplus
     column :newsletter
+    column "Company"{|md| md.company_name}
     column("Anmeldungen"){|md| GoldencobraEvents::RegistrationUser.where(user_id: md.id).count}
     column("Street"){ |md| md.location.street }
     column("PLZ"){ |md| md.location.zip }
