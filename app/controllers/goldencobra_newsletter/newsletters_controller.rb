@@ -15,7 +15,7 @@ module GoldencobraNewsletter
       @user = User.find_by_email(params[:email])
 
       if @user.blank?
-        generated_pass = NewsletterRegistration.generate_random_dummy_password()
+        generated_pass = GoldencobraNewsletter::NewsletterRegistration.generate_random_dummy_password()
         @user = User.create(:firstname => params[:first_name],
                             :lastname => params[:last_name],
                             :email => params[:email],
@@ -28,7 +28,7 @@ module GoldencobraNewsletter
         newsletter_registration = @user.newsletter_registration
 
         if newsletter_registration.blank?
-          newsletter_registration = NewsletterRegistration.new
+          newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.new
         end
         if params[:company] && params[:company].length > 0
           newsletter_registration.company_name = params[:company]

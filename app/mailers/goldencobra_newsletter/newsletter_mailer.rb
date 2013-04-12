@@ -53,7 +53,7 @@ module GoldencobraNewsletter
 
     def confirm_subscription(email, email_template_tag)
       @user = User.find_by_email(email)
-      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(email_template_tag)
+      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(email_template_tag.strip)
       do_not_deliver! if ActiveRecord::Base.connection.table_exists?("goldencobra_events_email_blacklists") && GoldencobraEvents::EmailBlacklist.is_blacklisted?(email) == true
       if @user && @template
         mail to: @user.email, subject: t(:subscription_confirmed, scope: [:email, :subject]), :css => "/goldencobra_events/email"
@@ -64,7 +64,7 @@ module GoldencobraNewsletter
 
     def double_opt_in(email, newsletter_tag)
       @user = User.find_by_email(email)
-      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
+      @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag.strip)
       do_not_deliver! if ActiveRecord::Base.connection.table_exists?("goldencobra_events_email_blacklists") && GoldencobraEvents::EmailBlacklist.is_blacklisted?(email) == true
       if @user && @template
         mail to: @user.email, subject: t(:double_opt_in, scope: [:email, :subject]), :css => "/goldencobra_events/email"
