@@ -115,7 +115,7 @@ ActiveAdmin.register User, :as => "Master Data" do
   member_action :block_user, method: :get do
     newsletter_registration = GoldencobraNewsletter::NewsletterRegistration.where(user_id: params[:id]).first
     if newsletter_registration
-      newsletter_registration.update_attributes(is_subscriber: false, newsletter_tags: "")
+      newsletter_registration.update_attributes(is_subscriber: false, newsletter_tags: "blockiert")
       if ActiveRecord::Base.connection.table_exists?("goldencobra_events.email_blacklists") &&
         Goldencobra::Setting.for_key('goldencobra_events.imap.use_blacklist') == "true"
 

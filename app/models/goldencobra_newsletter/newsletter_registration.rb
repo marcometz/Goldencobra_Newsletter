@@ -72,7 +72,8 @@ module GoldencobraNewsletter
       # tags = newsreg.newsletter_tags.split(",")
       # tags.delete(newsletter_tag)
       # newsreg.update_attributes(newsletter_tags: tags.compact.join(","))
-      newsreg.update_attributes(newsletter_tags: "")
+      newsreg.update_attributes(newsletter_tags: "abgemeldet")
+      newsreg.vita_steps << Goldencobra::Vita.create(:title => "Newsletter-Registration canceled", :description => "Newsletter wurde abgemeldet")
       # @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
       GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(user).deliver#, @template).deliver
     end
