@@ -20,8 +20,10 @@ module GoldencobraNewsletter
     validates_presence_of :company_name
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
     liquid_methods :newsletter_tags
-    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id, :location_id, :location_attributes
+    attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id, :location_id, :location_attributes, :vita_steps_attributes, :newsletter_tags_display
     accepts_nested_attributes_for :location, :user
+    accepts_nested_attributes_for :vita_steps, allow_destroy: true, reject_if: lambda { |a| a[:description].blank? }
+
 
     def full_user_name
       [self.user.firstname, self.user.lastname].join(" ")
@@ -53,6 +55,10 @@ module GoldencobraNewsletter
     scope :location_present_eq, lambda { |text| joins(:location).where("goldencobra_locations.street <> '' AND goldencobra_locations.zip <> ''") }
     search_methods :location_present_eq
 
+    scope :email_contains, lambda { |search_term| joins(:user).where("users.email LIKE '%#{search_term}%'") }
+    search_methods :email_contains
+
+
     def self.render_formular(tag_name)
     end
 
@@ -66,7 +72,8 @@ module GoldencobraNewsletter
       # tags = newsreg.newsletter_tags.split(",")
       # tags.delete(newsletter_tag)
       # newsreg.update_attributes(newsletter_tags: tags.compact.join(","))
-      newsreg.update_attributes(newsletter_tags: nil)
+      newsreg.update_attributes(newsletter_tags: "abgemeldet")
+      newsreg.vita_steps << Goldencobra::Vita.create(:title => "Newsletter-Registration canceled", :description => "Newsletter wurde abgemeldet")
       # @template = GoldencobraEmailTemplates::EmailTemplate.find_by_template_tag(newsletter_tag)
       GoldencobraNewsletter::NewsletterMailer.confirm_cancel_subscription(user).deliver#, @template).deliver
     end
@@ -92,5 +99,14 @@ module GoldencobraNewsletter
         GoldencobraNewsletter::NewsletterMailer.double_opt_in(email, newsletter_tag).deliver
       end
     end
+
+    def newsletter_tags_display=(wert)
+      self.newsletter_tags = wert.flatten.uniq.compact.delete_if{|a|a==""}.join(",")
+    end
+
+    def newsletter_tags_display
+      self.newsletter_tags.split(",").map{|tag| tag.strip} if self.newsletter_tags.present?
+    end
+
   end
 end

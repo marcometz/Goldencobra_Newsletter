@@ -9,6 +9,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
   filter :newsletter_tags
   filter :firstname, :as => :string
   filter :lastname, :as => :string
+  filter :email, as: :string
   filter :location_present, :as => :select, :collection => ["Postadresse vorhanden (Strasse & PLZ)"]
 
   scope "Alle", :scoped, :default => true
@@ -75,8 +76,10 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
             if newsreg.user && newsreg.user.email.present?
               GoldencobraNewsletter::NewsletterMailer.email_with_template(newsreg, emailtemplate).deliver unless Rails.env == "test"
               newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
+              newsreg.user.vita_steps << Goldencobra::Vita.create(:title => "Mail delivered: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
             else
               newsreg.vita_steps << Goldencobra::Vita.create(:title => "Mail delivery failed: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}")
+              newsreg.user.vita_steps << Goldencobra::Vita.create(:title => "Mail delivery failed: newsletter", :description => "email: #{newsreg.user.email}, user: admin #{current_user.id}, email_template: #{emailtemplate.id}") if newsreg.user.present?
             end
           end
         end
@@ -87,11 +90,6 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
 
  form :html => { :enctype => "multipart/form-data" }  do |f|
     f.actions
-    f.inputs "Allgemein", class: "foldable inputs" do
-      f.input :company_name
-      f.input :is_subscriber
-      f.input :newsletter_tags
-    end
     f.inputs "User" do
       f.fields_for :user_attributes, f.object.user do |u|
         u.inputs "" do
@@ -118,6 +116,21 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterRegistration, :as => "News
           l.input :zip
           l.input :city
           l.input :country, as: :string
+        end
+      end
+    end
+    f.inputs "", class: "foldable inputs" do
+      f.input :company_name
+      f.input :is_subscriber
+      f.input :newsletter_tags
+    end
+    f.inputs "Historie" do
+      f.has_many :vita_steps do |step|
+        if step.object.new_record?
+          step.input :description, as: :string, label: "Eintrag"
+          step.input :title, label: "Bearbeiter", hint: "Tragen Sie hier Ihren Namen ein, damit die Aktion zugeordnet werden kann"
+        else
+          render :partial => "/goldencobra/admin/users/vita_steps", :locals => {:step => step}
         end
       end
     end

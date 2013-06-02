@@ -1,0 +1,5 @@
+de:
+  activeadmin:
+    action_buttons:
+      create_event_registration_from_master_date: "Anmeldung für Nutzer anlegen"
+      block_user: "Sperrvermerk erstellen"
