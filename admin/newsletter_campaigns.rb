@@ -14,7 +14,7 @@ ActiveAdmin.register GoldencobraNewsletter::NewsletterCampaign, as: "Newsletter 
         f.input :title, label: "Name der Kampagne", hint: "Zur Unterscheidung verschiedener Kampagnen"
         f.input :subject, hint: "Der Betreff der E-Mail. Wird vom Empfaenger gelesen."
         f.input :from, label: "Absender", hint: "Erscheint als Absender beim Empfaenger"
-        f.input :layout, :input_html => { :class =>"tinymce"}, hint: "Schreiben Sie hier HTML Code hinein"
+        f.input :layout, :input_html => { :class =>"tinymce_extended"}, hint: "Schreiben Sie hier HTML Code hinein"
         f.input :plaintext, hint: "Schreiben Sie hier den Inhalt der Nur-Text E-Mail"
         f.input :selected_tags_display, hint: "An welche Newsletter Tags soll die Kamapgne versandt werden?",
           as: :select, collection: GoldencobraNewsletter::NewsletterRegistration.all.map{|nlr| nlr.newsletter_tags.split(",").map{|s|s.strip} if nlr.newsletter_tags.present?}.flatten.uniq!.compact,
