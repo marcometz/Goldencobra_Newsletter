@@ -1,11 +1,11 @@
 <html><head>
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-        
+
         <!-- Facebook sharing information tags -->
         <meta content="eMobility Summit Mai 2012" property="og:title">
-        
-        <title>Sie haben sich erfolgreich vom Newsletter „<%= @template.subject %>“ abgemeldet.</title>
-		
+
+        <title>Sie haben sich erfolgreich vom Newsletter abgemeldet.</title>
+
 </head>
     <body marginwidth="0" marginheight="0" style="-webkit-text-size-adjust: none;margin: 0;padding: 0;background-color: #FAFAFA;width: 100% !important;" offset="0" topmargin="0" leftmargin="0">
     	<center>
@@ -18,11 +18,11 @@
                                 	<table width="600" cellspacing="0" cellpadding="0" border="0" style="background-color: #FFFFFF;border-bottom: 0;" id="templateHeader">
                                         <tbody><tr>
                                             <td style="border-collapse: collapse;color: #202020;font-family:Helvetica,Arial,sans-serif;font-size: 34px;font-weight: bold;line-height: 100%;padding: 0;text-align: center;vertical-align: middle;" class="headerContent">
-                                            
+
                                             	<div style="text-align: none;">
 													<a style="color: #336699;font-weight: normal;text-decoration: underline;" href="http://cloudforum.tagesspiegel.de">
 													<img width="397" height="134" border="0" id="headerImage campaign-icon" style="margin: 0;padding: 0;max-width: 600px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;" alt="" src="http://cloudforum.tagesspiegel.de/system/images/8/original/cloudforum-logo.jpg"></a></div>
-                                            
+
                                             </td>
                                         </tr>
                                     </tbody></table>
@@ -34,18 +34,18 @@
                                 	<table width="600" cellspacing="0" cellpadding="0" border="0" id="templateBody">
                                     	<tbody><tr>
                                             <td valign="top" style="border-collapse: collapse;background-color: #FFFFFF;" class="bodyContent">
-                                
+
                                                 <!-- // Begin Module: Standard Content \\ -->
                                                 <table width="100%" cellspacing="0" cellpadding="20" border="0">
                                                     <tbody><tr>
                                                         <td valign="top" style="border-collapse: collapse;">
                                                             <div style="color: #505050;font-family:Helvetica,Arial,sans-serif;font-size: 14px;line-height: 150%;text-align: left;">
-                                                              Sie haben sich vom Newsletter '<%= @template.subject %>' abgemeldet.<br />
-                                                              Sollte dies versehentlich geschehen sein, koennen Sie sich problemlos <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/subscribe?tag=<%= @template.template_tag %>&token=<%= @user.authentication_token%>'>wieder anmelden</a>.
+                                                              Sie haben sich vom Newsletter abgemeldet.<br />
+                                                              Sollte dies versehentlich geschehen sein, koennen Sie sich problemlos <a href='http://<%= Goldencobra::Setting.for_key("goldencobra.url").html_safe %>/goldencobra_newsletter/newsletters/subscribe?tag=default&token=<%= @user.authentication_token%>'>wieder anmelden</a>.
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                </tbody></table>                                                
+                                                </tbody></table>
                                             </td>
                                         </tr>
                                     </tbody></table>
@@ -56,7 +56,7 @@
                                 	<table width="600" cellspacing="0" cellpadding="10" border="0" style="background-color: #FFFFFF;border-top: 0;" id="templateFooter">
                                     	<tbody><tr>
                                         	<td valign="top" style="border-collapse: collapse;" class="footerContent">
-                                            
+
                                                 <table width="100%" cellspacing="0" cellpadding="10" border="0">
                                                     <tbody><tr>
                                                         <td valign="middle" style="border-collapse: collapse;border: 0;" id="social" colspan="2">

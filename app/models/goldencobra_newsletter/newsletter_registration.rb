@@ -18,6 +18,7 @@ module GoldencobraNewsletter
     belongs_to :user, :class_name => User
     belongs_to :location, class_name: Goldencobra::Location
     validates_presence_of :company_name
+    validates_uniqueness_of :user_id
     has_many :vita_steps, :as => :loggable, :class_name => Goldencobra::Vita
     liquid_methods :newsletter_tags
     attr_accessible :company_name, :is_subscriber, :newsletter_tags, :user_attributes, :user, :user_id, :location_id, :location_attributes, :vita_steps_attributes, :newsletter_tags_display
