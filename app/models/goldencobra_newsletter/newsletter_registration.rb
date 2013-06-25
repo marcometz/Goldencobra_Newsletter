@@ -30,7 +30,7 @@ module GoldencobraNewsletter
       if self.user.present?
         [self.user.try(:firstname), self.user.try(:lastname)].join(" ")
       else
-        "No UseR found"
+        "No User found"
       end
     end
 
