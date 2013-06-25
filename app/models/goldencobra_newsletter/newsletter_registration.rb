@@ -27,7 +27,7 @@ module GoldencobraNewsletter
 
 
     def full_user_name
-      [self.user.firstname, self.user.lastname].join(" ")
+      [self.user.try(:firstname), self.user.try(:lastname)].join(" ")
     end
 
     def self.generate_random_dummy_password
@@ -89,6 +89,7 @@ module GoldencobraNewsletter
       if newsreg.update_attributes(newsletter_tags: updated_tags)
         logger.warn("=============")
         logger.warn("mail wird gesendet")
+        #Diese Email zum erneuten Bestätigen ist vorerst nicht erwünscht
         #GoldencobraNewsletter::NewsletterMailer.confirm_subscription(email, newsletter_tag).deliver
       end
     end
