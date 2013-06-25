@@ -27,7 +27,11 @@ module GoldencobraNewsletter
 
 
     def full_user_name
-      [self.user.try(:firstname), self.user.try(:lastname)].join(" ")
+      if self.user.present?
+        [self.user.try(:firstname), self.user.try(:lastname)].join(" ")
+      else
+        "No UseR found"
+      end
     end
 
     def self.generate_random_dummy_password
